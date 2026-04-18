@@ -101,7 +101,6 @@ header {
 .aviso-box { border-radius:10px; padding:10px 14px; font-size:11.5px; text-align:center; line-height:1.6; }
 .aviso-pizza { background:rgba(212,160,23,0.08); border:1px solid rgba(212,160,23,0.25); color:var(--dourado-claro); }
 .aviso-beirute { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:var(--texto-suave); }
-.aviso-tubaina { background:rgba(34,120,34,0.12); border:1px solid rgba(100,220,100,0.3); color:#7dde7d; }
 
 /* SEARCH */
 .search-wrap { max-width:520px; margin:14px auto 0; padding:0 16px; }
@@ -167,31 +166,8 @@ nav#cats button.active, nav#cats button:hover {
 .promo-preco-label { font-size:11px; color:var(--texto-suave); }
 .promo-preco-val { font-family:'Cinzel',serif; font-size:24px; color:var(--dourado-claro); font-weight:700; }
 .promo-borda { font-size:11px; color:#7dde7d; font-weight:700; }
-.promo-tubaina {
-  background:rgba(212,160,23,0.12); border:1px solid rgba(212,160,23,0.4);
-  border-radius:8px; padding:8px 12px; font-size:12px;
-  color:var(--dourado-claro); text-align:center; font-weight:700;
-}
 .promo-obs { font-size:10px; color:var(--texto-suave); margin-top:6px; text-align:center; }
 
-/* COMBOS ESFIHAS */
-.combos-wrap { max-width:488px; margin:0 auto 16px; padding:0 16px; }
-.combos-titulo {
-  font-family:'Cinzel',serif; font-size:13px; letter-spacing:3px;
-  text-transform:uppercase; color:var(--dourado);
-  border-bottom:1px solid var(--linha); padding-bottom:8px; margin-bottom:12px;
-  display:flex; align-items:center; gap:10px;
-}
-.combos-titulo::before { content:''; display:inline-block; width:20px; height:2px; background:var(--dourado); flex-shrink:0; }
-.combos-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.combo-card {
-  background:linear-gradient(130deg,rgba(90,0,0,0.5) 0%,rgba(42,0,0,0.5) 100%);
-  border:1px solid rgba(212,160,23,0.3); border-radius:12px; padding:11px 13px;
-}
-.combo-tag { font-family:'Cinzel',serif; font-size:11px; font-weight:700; color:var(--dourado-claro); margin-bottom:5px; letter-spacing:1px; }
-.combo-desc { font-size:11px; color:var(--texto-suave); line-height:1.5; margin-bottom:6px; }
-.combo-de { font-size:10px; color:rgba(245,237,224,0.4); text-decoration:line-through; }
-.combo-por { font-family:'Cinzel',serif; font-size:15px; color:var(--dourado-claro); }
 
 /* MAIN */
 main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-index:1; }
@@ -303,10 +279,7 @@ footer strong { color:var(--dourado); }
   <div class="aviso-box aviso-beirute">
     🥙 Todos os beirutes acompanham <strong>salada, mussarela, presunto e Maionese Hellmann's</strong>.
   </div>
-  <div class="aviso-box aviso-tubaina">
-    🎉 Pediu <strong>2 pizzas ou mais?</strong> Leve <strong>1 Tubaína 2L GRÁTIS!</strong><br>
-    <span style="font-size:10px;opacity:0.8">Válido de segunda a quinta · Exceto vésperas e feriados</span>
-  </div>
+
 </div>
 
 <div class="search-wrap">
@@ -319,7 +292,7 @@ footer strong { color:var(--dourado); }
 <nav id="cats"></nav>
 
 <div id="promo-section"></div>
-<div id="combos-section"></div>
+
 <main id="conteudo"></main>
 
 <footer>
@@ -556,15 +529,6 @@ const BEBIDAS = [
   ]},
 ];
 
-const COMBOS = [
-  {tag:"Combo 1",desc:"10 carne + 10 queijo fresco + 10 calabresa moída + 1 Coca-Cola 1L",de:"125,00",por:"90,00"},
-  {tag:"Combo 2",desc:"10 carne + 10 mussarela + 10 frango c/ catupiry + 1 Coca-Cola 1L",de:"120,00",por:"88,00"},
-  {tag:"Combo 3",desc:"10 carne + 10 bauru + 10 portuguesa + 10 toscana + 1 Coca-Cola 1L",de:"140,00",por:"105,00"},
-  {tag:"Combo 4",desc:"15 carne + 15 baiana + 1 Coca-Cola 1L",de:"121,00",por:"87,00"},
-  {tag:"Combo 5",desc:"10 carne + 10 queijo fresco + 5 prestígio + 5 toscana + 1 Coca-Cola 1L",de:"140,00",por:"95,00"},
-  {tag:"Combo Caculé",desc:"10 carne + 10 frango c/ catupiry + 5 calabresa + 1 Coca-Cola 1L",de:"99,00",por:"75,00"},
-  {tag:"Combo Família",desc:"1 pizza da promoção + 5 carne + 5 mussarela + 5 calabresa + 1 Coca-Cola 1L",de:null,por:"85,00"},
-];
 
 const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes","Porções"];
 const cats=["Todos",...new Set(MENU.map(i=>i.cat)),"Bebidas"];
@@ -579,7 +543,6 @@ window.setcat=(c)=>{catAtiva=c;renderCats();renderSections();};
 
 function renderSections(){
   renderPromo();
-  renderCombos();
   renderMenu();
 }
 
@@ -600,23 +563,6 @@ function renderPromo(){
       </div>
       <p class="promo-obs">Válido de segunda a quinta · Exceto vésperas e feriados</p>
     </div></div>`:"";
-}
-
-function renderCombos(){
-  const show=catAtiva==="Todos"||catAtiva==="Esfihas Salgadas";
-  document.getElementById("combos-section").innerHTML=show?`
-    <div class="combos-wrap">
-      <h2 class="combos-titulo">Promoções de Esfihas</h2>
-      <div class="combos-grid">
-        ${COMBOS.map(c=>`
-          <div class="combo-card">
-            <div class="combo-tag">${c.tag}</div>
-            <div class="combo-desc">${c.desc}</div>
-            ${c.de?`<div class="combo-de">R$ ${c.de}</div>`:""}
-            <div class="combo-por">R$ ${c.por}</div>
-          </div>`).join("")}
-      </div>
-    </div>`:"";
 }
 
 function renderMenu(){
