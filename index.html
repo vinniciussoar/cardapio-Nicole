@@ -43,7 +43,6 @@ header {
   padding: 0 16px 0;
   max-width: 520px;
   margin: 0 auto;
-  overflow: visible;
   z-index: 1;
 }
 .header-inner {
@@ -86,18 +85,9 @@ header {
   align-items:center; justify-content:center;
   flex-shrink:0; margin-bottom:14px;
 }
-.header-badge .badge-num {
-  font-family:'Cinzel',serif; font-size:18px;
-  font-weight:700; color:var(--dourado-claro); line-height:1;
-}
-.header-badge .badge-txt {
-  font-size:8px; color:var(--dourado);
-  letter-spacing:1px; text-align:center; line-height:1.3;
-}
-.boneca-wrap {
-  width:90px; flex-shrink:0;
-  display:flex; align-items:flex-end; margin-bottom:-4px;
-}
+.header-badge .badge-num { font-family:'Cinzel',serif; font-size:18px; font-weight:700; color:var(--dourado-claro); line-height:1; }
+.header-badge .badge-txt { font-size:8px; color:var(--dourado); letter-spacing:1px; text-align:center; line-height:1.3; }
+.boneca-wrap { width:90px; flex-shrink:0; display:flex; align-items:flex-end; margin-bottom:-4px; }
 .boneca-wrap img { width:100%; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5)); }
 
 .gold-divider {
@@ -108,20 +98,10 @@ header {
 
 /* AVISOS */
 .avisos-wrap { max-width:520px; margin:12px auto 0; padding:0 16px; display:flex; flex-direction:column; gap:8px; }
-.aviso-box {
-  border-radius:10px; padding:10px 14px;
-  font-size:11.5px; text-align:center; line-height:1.6;
-}
-.aviso-pizza {
-  background:rgba(212,160,23,0.08);
-  border:1px solid rgba(212,160,23,0.25);
-  color:var(--dourado-claro);
-}
-.aviso-beirute {
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.1);
-  color:var(--texto-suave);
-}
+.aviso-box { border-radius:10px; padding:10px 14px; font-size:11.5px; text-align:center; line-height:1.6; }
+.aviso-pizza { background:rgba(212,160,23,0.08); border:1px solid rgba(212,160,23,0.25); color:var(--dourado-claro); }
+.aviso-beirute { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:var(--texto-suave); }
+.aviso-tubaina { background:rgba(34,120,34,0.12); border:1px solid rgba(100,220,100,0.3); color:#7dde7d; }
 
 /* SEARCH */
 .search-wrap { max-width:520px; margin:14px auto 0; padding:0 16px; }
@@ -137,29 +117,21 @@ header {
 }
 .search-inner input::placeholder { color:rgba(245,237,224,0.35); }
 .search-inner input:focus { border-color:var(--dourado); }
-.search-inner i {
-  position:absolute; right:16px; top:50%;
-  transform:translateY(-50%);
-  color:var(--dourado); font-size:14px;
-}
+.search-inner i { position:absolute; right:16px; top:50%; transform:translateY(-50%); color:var(--dourado); font-size:14px; }
 
 /* TABS */
 nav#cats {
   display:flex; overflow-x:auto; gap:8px;
-  padding:14px 16px;
-  max-width:520px; margin:0 auto;
+  padding:14px 16px; max-width:520px; margin:0 auto;
   scrollbar-width:none;
 }
 nav#cats::-webkit-scrollbar { display:none; }
 nav#cats button {
-  white-space:nowrap;
-  background:transparent;
-  border:1px solid rgba(212,160,23,0.3);
-  border-radius:50px;
-  padding:7px 16px;
-  font-family:'Lato',sans-serif; font-size:12px; font-weight:700;
-  color:var(--dourado); cursor:pointer; letter-spacing:0.5px;
-  transition:all .2s;
+  white-space:nowrap; background:transparent;
+  border:1px solid rgba(212,160,23,0.3); border-radius:50px;
+  padding:7px 16px; font-family:'Lato',sans-serif;
+  font-size:12px; font-weight:700; color:var(--dourado);
+  cursor:pointer; letter-spacing:0.5px; transition:all .2s;
 }
 nav#cats button.active, nav#cats button:hover {
   background:var(--dourado); border-color:var(--dourado); color:#1a0000;
@@ -169,20 +141,38 @@ nav#cats button.active, nav#cats button:hover {
 .promo-banner { max-width:488px; margin:0 auto 16px; padding:0 16px; }
 .promo-inner {
   background:linear-gradient(110deg,#5a0000 0%,#2a0000 100%);
-  border:1px solid var(--dourado); border-radius:14px; padding:14px 16px;
+  border:2px solid var(--dourado-claro); border-radius:14px; padding:16px;
+  position:relative; overflow:hidden;
+}
+.promo-inner::before {
+  content:'';
+  position:absolute; top:-30px; right:-30px;
+  width:120px; height:120px;
+  background:radial-gradient(circle, rgba(245,200,66,0.15) 0%, transparent 70%);
 }
 .promo-inner h3 {
-  font-family:'Cinzel',serif; font-size:13px;
-  color:var(--dourado-claro); letter-spacing:1px; margin-bottom:6px;
+  font-family:'Cinzel',serif; font-size:15px;
+  color:var(--dourado-claro); letter-spacing:1px; margin-bottom:8px;
 }
-.promo-pills { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px; }
+.promo-pills { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
 .promo-pill {
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(212,160,23,0.3);
+  background:rgba(255,255,255,0.07); border:1px solid rgba(212,160,23,0.3);
   border-radius:20px; padding:3px 10px; font-size:11px; color:var(--texto);
 }
-.promo-price { font-family:'Cinzel',serif; font-size:20px; color:var(--dourado-claro); }
-.promo-obs { font-size:10px; color:var(--texto-suave); margin-top:4px; }
+.promo-destaque {
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(0,0,0,0.3); border-radius:10px; padding:10px 14px;
+  margin-bottom:8px;
+}
+.promo-preco-label { font-size:11px; color:var(--texto-suave); }
+.promo-preco-val { font-family:'Cinzel',serif; font-size:24px; color:var(--dourado-claro); font-weight:700; }
+.promo-borda { font-size:11px; color:#7dde7d; font-weight:700; }
+.promo-tubaina {
+  background:rgba(212,160,23,0.12); border:1px solid rgba(212,160,23,0.4);
+  border-radius:8px; padding:8px 12px; font-size:12px;
+  color:var(--dourado-claro); text-align:center; font-weight:700;
+}
+.promo-obs { font-size:10px; color:var(--texto-suave); margin-top:6px; text-align:center; }
 
 /* COMBOS ESFIHAS */
 .combos-wrap { max-width:488px; margin:0 auto 16px; padding:0 16px; }
@@ -196,13 +186,9 @@ nav#cats button.active, nav#cats button:hover {
 .combos-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
 .combo-card {
   background:linear-gradient(130deg,rgba(90,0,0,0.5) 0%,rgba(42,0,0,0.5) 100%);
-  border:1px solid rgba(212,160,23,0.3);
-  border-radius:12px; padding:11px 13px;
+  border:1px solid rgba(212,160,23,0.3); border-radius:12px; padding:11px 13px;
 }
-.combo-tag {
-  font-family:'Cinzel',serif; font-size:11px; font-weight:700;
-  color:var(--dourado-claro); margin-bottom:5px; letter-spacing:1px;
-}
+.combo-tag { font-family:'Cinzel',serif; font-size:11px; font-weight:700; color:var(--dourado-claro); margin-bottom:5px; letter-spacing:1px; }
 .combo-desc { font-size:11px; color:var(--texto-suave); line-height:1.5; margin-bottom:6px; }
 .combo-de { font-size:10px; color:rgba(245,237,224,0.4); text-decoration:line-through; }
 .combo-por { font-family:'Cinzel',serif; font-size:15px; color:var(--dourado-claro); }
@@ -233,6 +219,7 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
 .price-row { display:flex; align-items:center; gap:5px; }
 .size-label { font-size:9px; font-weight:700; color:rgba(212,160,23,0.6); letter-spacing:1px; }
 .price-val { font-family:'Cinzel',serif; font-size:13px; color:var(--dourado-claro); font-weight:700; }
+.price-val.grande { font-size:16px; }
 
 /* GRID */
 .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px; }
@@ -245,6 +232,39 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
 .mini-desc { font-size:11px; color:var(--texto-suave); line-height:1.4; margin-bottom:4px; }
 .mini-price { font-family:'Cinzel',serif; font-size:13px; color:var(--dourado-claro); }
 
+/* BEBIDAS SUBCATEGORIA */
+.beb-section { margin-bottom:20px; }
+.beb-subtitle {
+  font-size:11px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; color:var(--dourado);
+  margin-bottom:8px; padding-left:4px;
+  opacity:0.7;
+}
+.beb-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.beb-card {
+  background:var(--card-bg); border:1px solid var(--card-border);
+  border-radius:10px; padding:9px 12px;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.beb-name { font-size:12px; font-weight:600; color:var(--texto); line-height:1.3; flex:1; }
+.beb-price { font-family:'Cinzel',serif; font-size:13px; color:var(--dourado-claro); white-space:nowrap; flex-shrink:0; }
+
+/* sabores note */
+.sabores-note {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px; padding:8px 12px;
+  font-size:11px; color:var(--texto-suave);
+  margin-bottom:8px; line-height:1.6;
+}
+
+.fatias-note {
+  background:rgba(212,160,23,0.08);
+  border:1px solid rgba(212,160,23,0.2);
+  border-radius:8px; padding:8px 14px;
+  font-size:12px; color:var(--dourado);
+  margin-bottom:12px; text-align:center;
+}
 .empty { text-align:center; padding:40px 0; color:var(--texto-suave); font-size:13px; }
 
 footer {
@@ -278,11 +298,15 @@ footer strong { color:var(--dourado); }
 
 <div class="avisos-wrap">
   <div class="aviso-box aviso-pizza">
-    🍕 Todas as pizzas salgadas acompanham <strong>azeitona e orégano</strong>.
-    Itens com catupiry usam <strong>Catupiry Original</strong>. · Temos <strong>Rodízio</strong> — consulte os dias!
+    🍕 Todas as pizzas salgadas acompanham <strong>azeitona e orégano</strong>. Itens com catupiry usam <strong>Catupiry Original</strong>.<br>
+    <span style="font-size:10.5px;opacity:0.85">🍕 Tamanhos: <strong>G = 8 fatias</strong> &nbsp;·&nbsp; <strong>M = 4 fatias</strong></span>
   </div>
   <div class="aviso-box aviso-beirute">
     🥙 Todos os beirutes acompanham <strong>salada, mussarela, presunto e Maionese Hellmann's</strong>.
+  </div>
+  <div class="aviso-box aviso-tubaina">
+    🎉 Pediu <strong>2 pizzas ou mais?</strong> Leve <strong>1 Tubaína 2L GRÁTIS!</strong><br>
+    <span style="font-size:10px;opacity:0.8">Válido de segunda a quinta · Exceto vésperas e feriados</span>
   </div>
 </div>
 
@@ -297,14 +321,16 @@ footer strong { color:var(--dourado); }
 
 <div id="promo-section"></div>
 <div id="combos-section"></div>
-
 <main id="conteudo"></main>
 
 <footer>
   <strong>Pizzaria & Esfiharia Nicole Caculé</strong><br>
   Av. Manuel Caculé, 203 – Copacabana<br>
   📱 (77) 9 8106-5139 &nbsp;·&nbsp; @pizzaria.nicolecacule<br><br>
-  <em>Preços sujeitos a alteração sem aviso prévio.</em>
+  <em>Preços sujeitos a alteração sem aviso prévio.</em><br><br>
+  <a href="https://www.instagram.com/pizzaria.nicolecacule?igsh=MmhrcHJ5M3FoOWdr" target="_blank" style="color:var(--dourado);text-decoration:none;font-weight:700;font-size:13px;">
+    📸 @pizzaria.nicolecacule
+  </a>
 </footer>
 
 <script>
@@ -470,59 +496,79 @@ const MENU = [
   {cat:"Porções",name:"Batata frita c/ bacon e cheddar",price:"18,00"},
   {cat:"Porções",name:"Batata frita",price:"10,00"},
   {cat:"Porções",name:"Carne de sol c/ aipim",price:"35,00"},
-  // BEBIDAS
-  {cat:"Bebidas",name:"Coca-Cola 2 litros",price:"15,00"},
-  {cat:"Bebidas",name:"Coca-Cola 1 litro",price:"10,00"},
-  {cat:"Bebidas",name:"Coca-Cola 600 ml",price:"8,00"},
-  {cat:"Bebidas",name:"Coca-Cola KS 1 litro",price:"10,00"},
-  {cat:"Bebidas",name:"Coca-Cola KS Zero 1 litro",price:"10,00"},
-  {cat:"Bebidas",name:"Guaraná 2 litros",price:"15,00"},
-  {cat:"Bebidas",name:"Fanta Laranja 2 litros",price:"15,00"},
-  {cat:"Bebidas",name:"Fanta Uva 2 litros",price:"15,00"},
-  {cat:"Bebidas",name:"Tubaína 2 litros",price:"9,00"},
-  {cat:"Bebidas",name:"Coca-Cola lata",price:"5,00"},
-  {cat:"Bebidas",name:"Guaraná lata",price:"5,00"},
-  {cat:"Bebidas",name:"Fanta Laranja lata",price:"5,00"},
-  {cat:"Bebidas",name:"Fanta Uva lata",price:"5,00"},
-  {cat:"Bebidas",name:"Vinho taça (tinto ou branco)",price:"8,00"},
-  {cat:"Bebidas",name:"Caldo de Cana — copo",price:"5,00"},
-  {cat:"Bebidas",name:"Caldo de Cana — jarra",price:"8,00"},
-  {cat:"Bebidas",name:"Milk Shake Ovomaltine",price:"14,00"},
-  {cat:"Bebidas",name:"Milk Shake Morango",price:"13,00"},
-  {cat:"Bebidas",name:"Milk Shake Chocolate",price:"13,00"},
-  {cat:"Bebidas",name:"Milk Shake Baunilha",price:"13,00"},
-  {cat:"Bebidas",name:"Milk Shake Frapê de Coco",price:"14,00"},
-  {cat:"Bebidas",name:"Caipirinha Vodka Smirnoff",price:"12,00"},
-  {cat:"Bebidas",name:"Caipirinha Velho Barreiro",price:"10,00"},
-  {cat:"Bebidas",name:"Caipirinha Saquê",price:"14,00"},
-  {cat:"Bebidas",name:"Heineken Long Neck",price:"10,00"},
-  {cat:"Bebidas",name:"Heineken Zero Long Neck",price:"10,00"},
-  {cat:"Bebidas",name:"Stella Artois Long Neck",price:"8,00"},
-  {cat:"Bebidas",name:"Budweiser Long Neck",price:"9,00"},
-  {cat:"Bebidas",name:"Heineken 600ml",price:"15,00"},
-  {cat:"Bebidas",name:"Budweiser 600ml",price:"12,00"},
-  {cat:"Bebidas",name:"Antarctica 600ml",price:"10,00"},
-  {cat:"Bebidas",name:"Brahma 600ml",price:"10,00"},
-  {cat:"Bebidas",name:"Skol 600ml",price:"10,00"},
-  {cat:"Bebidas",name:"Original 600ml",price:"12,00"},
-  {cat:"Bebidas",name:"Água mineral com gás",price:"5,00"},
-  {cat:"Bebidas",name:"Água mineral sem gás",price:"4,00"},
-  {cat:"Bebidas",name:"Suco natural — copo",price:"8,00"},
-  {cat:"Bebidas",name:"Suco natural — jarra",price:"12,00"},
+];
+
+const BEBIDAS = [
+  {sub:"🥤 Refrigerantes", items:[
+    {name:"Coca-Cola 2 litros",price:"15,00"},
+    {name:"Coca-Cola 1 litro",price:"10,00"},
+    {name:"Coca-Cola 600 ml",price:"8,00"},
+    {name:"Coca-Cola KS 1 litro",price:"10,00"},
+    {name:"Coca-Cola KS Zero 1 litro",price:"10,00"},
+    {name:"Guaraná 2 litros",price:"15,00"},
+    {name:"Fanta Laranja 2 litros",price:"15,00"},
+    {name:"Fanta Uva 2 litros",price:"15,00"},
+    {name:"Tubaína 2 litros",price:"9,00"},
+    {name:"Coca-Cola lata",price:"5,00"},
+    {name:"Guaraná lata",price:"5,00"},
+    {name:"Fanta Laranja lata",price:"5,00"},
+    {name:"Fanta Uva lata",price:"5,00"},
+  ]},
+  {sub:"🍺 Cervejas Long Neck", items:[
+    {name:"Heineken",price:"10,00"},
+    {name:"Heineken Zero",price:"10,00"},
+    {name:"Stella Artois",price:"8,00"},
+    {name:"Budweiser",price:"9,00"},
+  ]},
+  {sub:"🍺 Cervejas 600ml", items:[
+    {name:"Heineken",price:"15,00"},
+    {name:"Budweiser",price:"12,00"},
+    {name:"Antarctica",price:"10,00"},
+    {name:"Brahma",price:"10,00"},
+    {name:"Skol",price:"10,00"},
+    {name:"Original",price:"12,00"},
+  ]},
+  {sub:"🍹 Caipirinhas", sabores:"Limão, Kiwi, Tropical, Morango, Maracujá e Abacaxi", items:[
+    {name:"Vodka Smirnoff",price:"12,00"},
+    {name:"Velho Barreiro",price:"10,00"},
+    {name:"Saquê",price:"14,00"},
+  ]},
+  {sub:"🥛 Milk Shakes", items:[
+    {name:"Ovomaltine",price:"14,00"},
+    {name:"Morango",price:"13,00"},
+    {name:"Chocolate",price:"13,00"},
+    {name:"Baunilha",price:"13,00"},
+    {name:"Frapê de Coco",price:"14,00"},
+  ]},
+  {sub:"🍷 Vinhos", items:[
+    {name:"Taça (tinto ou branco)",price:"8,00"},
+  ]},
+  {sub:"🌿 Caldo de Cana", sabores:"Com limão ou abacaxi e gelo", items:[
+    {name:"Copo",price:"5,00"},
+    {name:"Jarra",price:"8,00"},
+  ]},
+  {sub:"🧃 Sucos Naturais", sabores:"Abacaxi c/ hortelã, Limonada suíça, Acerola, Melancia, Morango, Laranja, Goiaba, Limão e Maracujá", items:[
+    {name:"Copo",price:"8,00"},
+    {name:"Jarra",price:"12,00"},
+  ]},
+  {sub:"💧 Água", items:[
+    {name:"Mineral com gás",price:"5,00"},
+    {name:"Mineral sem gás",price:"4,00"},
+  ]},
 ];
 
 const COMBOS = [
-  {tag:"Combo 1", desc:"10 carne + 10 queijo fresco + 10 calabresa moída temperada + 1 Coca-Cola 1L", de:"125,00", por:"90,00"},
-  {tag:"Combo 2", desc:"10 carne + 10 mussarela + 10 frango c/ catupiry + 1 Coca-Cola 1L", de:"120,00", por:"88,00"},
-  {tag:"Combo 3", desc:"10 carne + 10 bauru + 10 portuguesa + 10 toscana + 1 Coca-Cola 1L", de:"140,00", por:"105,00"},
-  {tag:"Combo 4", desc:"15 carne + 15 baiana + 1 Coca-Cola 1L", de:"121,00", por:"87,00"},
-  {tag:"Combo 5", desc:"10 carne + 10 queijo fresco + 5 prestígio + 5 toscana + 1 Coca-Cola 1L", de:"140,00", por:"95,00"},
-  {tag:"Combo Caculé", desc:"10 carne + 10 frango c/ catupiry + 5 calabresa + 1 Coca-Cola 1L", de:"99,00", por:"75,00"},
-  {tag:"Combo Família", desc:"1 pizza da promoção + 5 carne + 5 mussarela + 5 calabresa + 1 Coca-Cola 1L", de:null, por:"85,00"},
+  {tag:"Combo 1",desc:"10 carne + 10 queijo fresco + 10 calabresa moída + 1 Coca-Cola 1L",de:"125,00",por:"90,00"},
+  {tag:"Combo 2",desc:"10 carne + 10 mussarela + 10 frango c/ catupiry + 1 Coca-Cola 1L",de:"120,00",por:"88,00"},
+  {tag:"Combo 3",desc:"10 carne + 10 bauru + 10 portuguesa + 10 toscana + 1 Coca-Cola 1L",de:"140,00",por:"105,00"},
+  {tag:"Combo 4",desc:"15 carne + 15 baiana + 1 Coca-Cola 1L",de:"121,00",por:"87,00"},
+  {tag:"Combo 5",desc:"10 carne + 10 queijo fresco + 5 prestígio + 5 toscana + 1 Coca-Cola 1L",de:"140,00",por:"95,00"},
+  {tag:"Combo Caculé",desc:"10 carne + 10 frango c/ catupiry + 5 calabresa + 1 Coca-Cola 1L",de:"99,00",por:"75,00"},
+  {tag:"Combo Família",desc:"1 pizza da promoção + 5 carne + 5 mussarela + 5 calabresa + 1 Coca-Cola 1L",de:null,por:"85,00"},
 ];
 
-const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes","Porções","Bebidas"];
-const cats=["Todos",...new Set(MENU.map(i=>i.cat))];
+const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes","Porções"];
+const cats=["Todos",...new Set(MENU.map(i=>i.cat)),"Bebidas"];
 let catAtiva="Todos",busca="";
 
 function renderCats(){
@@ -546,8 +592,14 @@ function renderPromo(){
       <div class="promo-pills">
         ${["Baiana","Brasileira","Lombo Especial","Bauru","Caculé","Americana","Palmito"].map(p=>`<span class="promo-pill">${p}</span>`).join("")}
       </div>
-      <div class="promo-price">R$ 39,90 · borda recheada grátis</div>
-      <p class="promo-obs">Seg a qui, exceto vésperas e feriados · 2+ pizzas? Leve 1 Tubaína grátis!</p>
+      <div class="promo-destaque">
+        <div>
+          <div class="promo-preco-label">Preço promocional</div>
+          <div class="promo-preco-val">R$ 39,90</div>
+          <div class="promo-borda">✅ Borda recheada grátis!</div>
+        </div>
+      </div>
+      <p class="promo-obs">Válido de segunda a quinta · Exceto vésperas e feriados</p>
     </div></div>`:"";
 }
 
@@ -570,12 +622,33 @@ function renderCombos(){
 
 function renderMenu(){
   const q=busca.toLowerCase();
+  const el=document.getElementById("conteudo");
+
+  if(catAtiva==="Bebidas"){
+    const secsFiltradas = q
+      ? BEBIDAS.map(s=>({...s,items:s.items.filter(i=>i.name.toLowerCase().includes(q))})).filter(s=>s.items.length)
+      : BEBIDAS;
+    if(!secsFiltradas.length){el.innerHTML='<div class="empty">Nenhuma bebida encontrada.</div>';return;}
+    el.innerHTML=secsFiltradas.map(s=>`
+      <div class="beb-section">
+        <div class="beb-subtitle">${s.sub}</div>
+        ${s.sabores?`<div class="sabores-note">Sabores: ${s.sabores}</div>`:""}
+        <div class="beb-grid">
+          ${s.items.map(i=>`
+            <div class="beb-card">
+              <span class="beb-name">${i.name}</span>
+              <span class="beb-price">R$ ${i.price}</span>
+            </div>`).join("")}
+        </div>
+      </div>`).join("");
+    return;
+  }
+
   const fil=MENU.filter(i=>{
     const mc=catAtiva==="Todos"||i.cat===catAtiva;
     const mb=(i.name+" "+(i.desc||"")).toLowerCase().includes(q);
     return mc&&mb;
   });
-  const el=document.getElementById("conteudo");
   if(!fil.length){el.innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
   if(catAtiva==="Todos"){
     const gs=[...new Set(fil.map(i=>i.cat))];
@@ -597,7 +670,9 @@ function renderGroup(items,cat){
         <div class="mini-price">R$ ${i.price}</div>
       </div>`).join("")}</div>`;
   }
-  return items.map(i=>`
+  const fatias = (cat==="Pizzas Salgadas"||cat==="Pizzas Doces")
+    ? `<div class="fatias-note">🍕 <strong>G</strong> — 8 fatias &nbsp;·&nbsp; <strong>M</strong> — 4 fatias</div>` : "";
+  return fatias + items.map(i=>`
     <div class="pizza-card">
       <div class="pizza-left">
         ${i.num?`<div class="pizza-num">#${i.num}</div>`:""}
@@ -605,8 +680,8 @@ function renderGroup(items,cat){
         ${i.desc?`<div class="pizza-desc">${i.desc}</div>`:""}
       </div>
       <div class="pizza-prices">
+        <div class="price-row"><span class="size-label">G</span><span class="price-val grande">R$ ${i.G}</span></div>
         <div class="price-row"><span class="size-label">M</span><span class="price-val">R$ ${i.M}</span></div>
-        <div class="price-row"><span class="size-label">G</span><span class="price-val">R$ ${i.G}</span></div>
       </div>
     </div>`).join("");
 }
