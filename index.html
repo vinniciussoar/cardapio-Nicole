@@ -520,7 +520,7 @@ const BEBIDAS = [
 ];
 
 const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes"];
-const cats=["Todos",...new Set(MENU.map(i=>i.cat)),"Bebidas"];
+const cats = ["Todos", ...(typeof MENU !== "undefined" ? [...new Set(MENU.map(i=>i.cat))] : []), "Bebidas"];
 let catAtiva="Todos",busca="";
 
 function renderCats(){
@@ -555,23 +555,24 @@ function renderPromo(){
 }
 
 function renderMenu(){
-  const q=busca.toLowerCase();
-  const el=document.getElementById("conteudo");
+  const q = busca.toLowerCase();
+  const el = document.getElementById("conteudo");
 
   if(catAtiva==="Bebidas"){
-    const secsFiltradas = q
-      ? BEBIDAS.map(s=>({...s,items:s.items.filter(i=>i.name.toLowerCase().includes(q))})).filter(s=>s.items.length)
-      : BEBIDAS;
+    const secsFiltradas = BEBIDAS.map(s=>({
+      ...s,
+      items: s.items.filter(i=>i.name.toLowerCase().includes(q))
+    })).filter(s=>s.items.length);
 
     if(!secsFiltradas.length){
       el.innerHTML='<div class="empty">Nenhuma bebida encontrada.</div>';
       return;
     }
 
-    el.innerHTML=secsFiltradas.map(s=>`
+    el.innerHTML = secsFiltradas.map(s=>`
       <div class="beb-section">
         <div class="beb-subtitle">${s.sub}</div>
-        ${s.sabores?`<div class="sabores-note">${s.sabores}</div>`:""}
+        ${s.sabores ? `<div class="sabores-note">${s.sabores}</div>` : ""}
         <div class="beb-grid">
           ${s.items.map(i=>`
             <div class="beb-card">
@@ -582,13 +583,20 @@ function renderMenu(){
         </div>
       </div>
     `).join("");
+
     return;
   }
 
-  const fil=MENU.filter(i=>{
-    const mc=catAtiva==="Todos"||i.cat===catAtiva;
-    const mb=(i.name+" "+(i.desc||"")).toLowerCase().includes(q);
-    return mc&&mb;
+  // ⚠️ segurança caso MENU não exista
+  if(typeof MENU === "undefined"){
+    el.innerHTML = '<div class="empty">Cardápio carregando...</div>';
+    return;
+  }
+
+  const fil = MENU.filter(i=>{
+    const mc = catAtiva==="Todos" || i.cat===catAtiva;
+    const mb = (i.name+" "+(i.desc||"")).toLowerCase().includes(q);
+    return mc && mb;
   });
 
   if(!fil.length){
@@ -606,54 +614,3 @@ function renderMenu(){
     el.innerHTML=renderGroup(fil,catAtiva);
   }
 }
-
-function renderGroup(items,cat){
-  if(GRID_CATS.includes(cat)){
-    return `<div class="grid-2">${items.map(i=>`
-      <div class="mini-card">
-        ${i.num?`<div class="pizza-num">#${i.num}</div>`:""}
-        <div class="mini-name">${i.name}</div>
-        ${i.desc?`<div class="mini-desc">${i.desc}</div>`:""}
-        <div class="mini-price">R$ ${i.price}</div>
-      </div>
-    `).join("")}</div>`;
-  }
-
-  const fatias = (cat==="Pizzas Salgadas"||cat==="Pizzas Doces")
-    ? `<div class="fatias-note">🍕 <strong>G</strong> — 8 fatias · <strong>M</strong> — 4 fatias</div>`
-    : "";
-
-  return fatias + items.map(i=>`
-    <div class="pizza-card">
-      <div class="pizza-left">
-        ${i.num?`<div class="pizza-num">#${i.num}</div>`:""}
-        <div class="pizza-name">${i.name}</div>
-        ${i.desc?`<div class="pizza-desc">${i.desc}</div>`:""}
-      </div>
-      <div class="pizza-prices">
-        <div class="price-row"><span class="size-label">G</span><span class="price-val grande">R$ ${i.G}</span></div>
-        <div class="price-row"><span class="size-label">M</span><span class="price-val">R$ ${i.M}</span></div>
-      </div>
-    </div>
-  `).join("");
-}
-
-document.getElementById("busca").addEventListener("input",e=>{
-  busca=e.target.value;
-  renderMenu();
-});
-
-renderCats();
-renderSections();
-</script>
-
-<style>
-.sabores-note {
-  font-size: 13px;
-  color: #777;
-  background: #f5f5f5;
-  padding: 6px 10px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-</style>
