@@ -461,6 +461,7 @@ const MENU = [
   {cat:"Beirutes",num:"18",name:"Rosbife",price:"37,00"},
 ];
 
+<script>
 const BEBIDAS = [
   {sub:"🥤 Refrigerantes", items:[
     {name:"Coca-Cola 2 litros",price:"15,00"},
@@ -479,51 +480,46 @@ const BEBIDAS = [
     {name:"Fanta Laranja lata",price:"5,00"},
     {name:"Fanta Uva lata",price:"5,00"},
   ]},
-  {sub:"🍺 Cervejas Long Neck", items:[
-    {name:"Heineken",price:"10,00"},
-    {name:"Heineken Zero",price:"10,00"},
-    {name:"Stella Artois",price:"8,00"},
-    {name:"Budweiser",price:"9,00"},
+
+  {sub:"🧃 Sucos Naturais", sabores:"Abacaxi c/ hortelã, Limonada suíça, Acerola, Melancia, Morango, Laranja, Goiaba, Limão e Maracujá", items:[
+    {name:"Copo",price:"8,00"},
+    {name:"Jarra",price:"12,00"},
   ]},
+
   {sub:"🍺 Cervejas 600ml", items:[
-    {name:"Heineken",price:"15,00"},
+    {name:"Heineken",price:"17,00"},
+    {name:"Amstel",price:"11,00"},
     {name:"Budweiser",price:"12,00"},
     {name:"Antarctica",price:"10,00"},
     {name:"Brahma",price:"10,00"},
     {name:"Skol",price:"10,00"},
     {name:"Original",price:"12,00"},
   ]},
+
+  {sub:"🍺 Cervejas Long Neck", items:[
+    {name:"Heineken",price:"10,00"},
+    {name:"Heineken Zero",price:"10,00"},
+    {name:"Stella Artois",price:"8,00"},
+    {name:"Budweiser",price:"9,00"},
+  ]},
+
   {sub:"🍹 Caipirinhas", sabores:"Limão, Kiwi, Tropical, Morango, Maracujá e Abacaxi", items:[
     {name:"Vodka Smirnoff",price:"12,00"},
     {name:"Velho Barreiro",price:"10,00"},
     {name:"Saquê",price:"14,00"},
   ]},
-  {sub:"🥛 Milk Shakes", items:[
-    {name:"Ovomaltine",price:"14,00"},
-    {name:"Morango",price:"13,00"},
-    {name:"Chocolate",price:"13,00"},
-    {name:"Baunilha",price:"13,00"},
-    {name:"Frapê de Coco",price:"14,00"},
-  ]},
+
   {sub:"🍷 Vinhos", items:[
-    {name:"Taça (tinto ou branco)",price:"8,00"},
+    {name:"Taça (tinto ou branco)",price:"12,00"},
   ]},
-  {sub:"🌿 Caldo de Cana", sabores:"Com limão ou abacaxi e gelo", items:[
-    {name:"Copo",price:"5,00"},
-    {name:"Jarra",price:"8,00"},
-  ]},
-  {sub:"🧃 Sucos Naturais", sabores:"Abacaxi c/ hortelã, Limonada suíça, Acerola, Melancia, Morango, Laranja, Goiaba, Limão e Maracujá", items:[
-    {name:"Copo",price:"8,00"},
-    {name:"Jarra",price:"12,00"},
-  ]},
+
   {sub:"💧 Água", items:[
     {name:"Mineral com gás",price:"5,00"},
     {name:"Mineral sem gás",price:"4,00"},
   ]},
 ];
 
-
-const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes",];
+const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes"];
 const cats=["Todos",...new Set(MENU.map(i=>i.cat)),"Bebidas"];
 let catAtiva="Todos",busca="";
 
@@ -566,19 +562,26 @@ function renderMenu(){
     const secsFiltradas = q
       ? BEBIDAS.map(s=>({...s,items:s.items.filter(i=>i.name.toLowerCase().includes(q))})).filter(s=>s.items.length)
       : BEBIDAS;
-    if(!secsFiltradas.length){el.innerHTML='<div class="empty">Nenhuma bebida encontrada.</div>';return;}
+
+    if(!secsFiltradas.length){
+      el.innerHTML='<div class="empty">Nenhuma bebida encontrada.</div>';
+      return;
+    }
+
     el.innerHTML=secsFiltradas.map(s=>`
       <div class="beb-section">
         <div class="beb-subtitle">${s.sub}</div>
-        ${s.sabores?`<div class="sabores-note">Sabores: ${s.sabores}</div>`:""}
+        ${s.sabores?`<div class="sabores-note">${s.sabores}</div>`:""}
         <div class="beb-grid">
           ${s.items.map(i=>`
             <div class="beb-card">
               <span class="beb-name">${i.name}</span>
               <span class="beb-price">R$ ${i.price}</span>
-            </div>`).join("")}
+            </div>
+          `).join("")}
         </div>
-      </div>`).join("");
+      </div>
+    `).join("");
     return;
   }
 
@@ -587,12 +590,18 @@ function renderMenu(){
     const mb=(i.name+" "+(i.desc||"")).toLowerCase().includes(q);
     return mc&&mb;
   });
-  if(!fil.length){el.innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+
+  if(!fil.length){
+    el.innerHTML='<div class="empty">Nenhum item encontrado.</div>';
+    return;
+  }
+
   if(catAtiva==="Todos"){
     const gs=[...new Set(fil.map(i=>i.cat))];
     el.innerHTML=gs.map(g=>`
       <h2 class="section-title">${g}</h2>
-      ${renderGroup(fil.filter(i=>i.cat===g),g)}`).join("");
+      ${renderGroup(fil.filter(i=>i.cat===g),g)}
+    `).join("");
   } else {
     el.innerHTML=renderGroup(fil,catAtiva);
   }
@@ -606,10 +615,14 @@ function renderGroup(items,cat){
         <div class="mini-name">${i.name}</div>
         ${i.desc?`<div class="mini-desc">${i.desc}</div>`:""}
         <div class="mini-price">R$ ${i.price}</div>
-      </div>`).join("")}</div>`;
+      </div>
+    `).join("")}</div>`;
   }
+
   const fatias = (cat==="Pizzas Salgadas"||cat==="Pizzas Doces")
-    ? `<div class="fatias-note">🍕 <strong>G</strong> — 8 fatias &nbsp;·&nbsp; <strong>M</strong> — 4 fatias</div>` : "";
+    ? `<div class="fatias-note">🍕 <strong>G</strong> — 8 fatias · <strong>M</strong> — 4 fatias</div>`
+    : "";
+
   return fatias + items.map(i=>`
     <div class="pizza-card">
       <div class="pizza-left">
@@ -621,11 +634,26 @@ function renderGroup(items,cat){
         <div class="price-row"><span class="size-label">G</span><span class="price-val grande">R$ ${i.G}</span></div>
         <div class="price-row"><span class="size-label">M</span><span class="price-val">R$ ${i.M}</span></div>
       </div>
-    </div>`).join("");
+    </div>
+  `).join("");
 }
 
-document.getElementById("busca").addEventListener("input",e=>{busca=e.target.value;renderMenu();});
-renderCats();renderSections();
+document.getElementById("busca").addEventListener("input",e=>{
+  busca=e.target.value;
+  renderMenu();
+});
+
+renderCats();
+renderSections();
 </script>
-</body>
-</html>
+
+<style>
+.sabores-note {
+  font-size: 13px;
+  color: #777;
+  background: #f5f5f5;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+</style>
