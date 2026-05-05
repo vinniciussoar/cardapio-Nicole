@@ -244,6 +244,31 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
 }
 .empty { text-align:center; padding:40px 0; color:var(--texto-suave); font-size:13px; }
 
+/* BOTÃO FLUTUANTE BEBIDAS */
+.btn-bebidas {
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(110deg,#8B0000,#5a0000);
+  border:2px solid var(--dourado);
+  border-radius:50px;
+  padding:12px 28px;
+  color:var(--dourado-claro);
+  font-family:"Lato",sans-serif;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
+  z-index:100;
+  transition:all .2s;
+  white-space:nowrap;
+  display:none;
+}
+.btn-bebidas:hover { transform:translateX(-50%) scale(1.05); border-color:var(--dourado-claro); }
+.btn-bebidas.visible { display:block; }
+
 footer {
   max-width:520px; margin:30px auto 0; padding:0 16px 24px;
   text-align:center; font-size:11px; color:var(--texto-suave);
@@ -310,88 +335,88 @@ footer strong { color:var(--dourado); }
 <script>
 const MENU = [
   // PIZZAS SALGADAS
-  {cat:"Pizzas Salgadas",num:"01",name:"À Moda",desc:"Presunto, ovo, ervilha, bacon e mussarela.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Salgadas",num:"02",name:"À Moda do Cliente",desc:"Cinco ingredientes à sua escolha.",M:"35,00",G:"52,00"},
-  {cat:"Pizzas Salgadas",num:"03",name:"À Moda do Pizzaiolo",desc:"Atum, presunto, bacon, ovo e mussarela.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Salgadas",num:"04",name:"Alho",desc:"Mussarela e alho.",M:"35,00",G:"47,00"},
-  {cat:"Pizzas Salgadas",num:"05",name:"Americana",desc:"Presunto, palmito, mussarela e catupiry.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Salgadas",num:"06",name:"Atum",desc:"Atum e cebola.",M:"35,00",G:"45,00"},
-  {cat:"Pizzas Salgadas",num:"07",name:"Lagoa Caculé",desc:"Atum, cebola e mussarela.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"08",name:"Bacon",desc:"Bacon e mussarela.",M:"35,00",G:"45,00"},
-  {cat:"Pizzas Salgadas",num:"09",name:"Baiana",desc:"Calabresa fatiada, ovo, cebola e pimenta.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Salgadas",num:"10",name:"Bauru",desc:"Presunto, mussarela e tomate.",M:"35,00",G:"45,00"},
-  {cat:"Pizzas Salgadas",num:"11",name:"Brasileira",desc:"Calabresa moída, ovo, cebola e mussarela.",M:"35,00",G:"45,00"},
-  {cat:"Pizzas Salgadas",num:"12",name:"Brócolis",desc:"Brócolis, palmito, bacon e mussarela.",M:"35,00",G:"45,00"},
+  {cat:"Pizzas Salgadas",num:"01",name:"À Moda",desc:"Presunto, ovo, ervilha, bacon e mussarela.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"02",name:"À Moda do Cliente",desc:"Cinco ingredientes à sua escolha.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Salgadas",num:"03",name:"À Moda do Pizzaiolo",desc:"Atum, presunto, bacon, ovo e mussarela.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Salgadas",num:"04",name:"Alho",desc:"Mussarela e alho.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"05",name:"Americana",desc:"Presunto, palmito, mussarela e catupiry.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"06",name:"Atum",desc:"Atum e cebola.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Salgadas",num:"07",name:"Lagoa Caculé",desc:"Atum, cebola e mussarela.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Salgadas",num:"08",name:"Bacon",desc:"Bacon e mussarela.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"09",name:"Baiana",desc:"Calabresa fatiada, ovo, cebola e pimenta.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"10",name:"Bauru",desc:"Presunto, mussarela e tomate.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"11",name:"Brasileira",desc:"Calabresa moída, ovo, cebola e mussarela.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"12",name:"Brócolis",desc:"Brócolis, palmito, bacon e mussarela.",M:"35,00",G:"50,00"},
   {cat:"Pizzas Salgadas",num:"13",name:"Caipira",desc:"Frango, catupiry e milho.",M:"35,00",G:"50,00"},
   {cat:"Pizzas Salgadas",num:"14",name:"Calabresa Barbecue",desc:"Calabresa, cebola roxa, bacon e barbecue.",M:"35,00",G:"52,00"},
   {cat:"Pizzas Salgadas",num:"15",name:"Calabresa",desc:"Calabresa e cebola.",M:"35,00",G:"45,00"},
-  {cat:"Pizzas Salgadas",num:"16",name:"Camarão",desc:"Mussarela, camarão, cebolinha e pimenta biquinho.",M:"35,00",G:"70,00"},
-  {cat:"Pizzas Salgadas",num:"17",name:"Carioca",desc:"Presunto, frango, bacon e mussarela.",M:"35,00",G:"49,00"},
+  {cat:"Pizzas Salgadas",num:"16",name:"Camarão",desc:"Mussarela, camarão, cebolinha e pimenta biquinho.",M:"40,00",G:"80,00"},
+  {cat:"Pizzas Salgadas",num:"17",name:"Carioca",desc:"Presunto, frango, bacon e mussarela.",M:"35,00",G:"51,00"},
   {cat:"Pizzas Salgadas",num:"18",name:"Cinco Queijos",desc:"Mussarela, catupiry, parmesão, provolone e cheddar.",M:"35,00",G:"51,00"},
-  {cat:"Pizzas Salgadas",num:"19",name:"Contra Filé",desc:"Contra filé em tiras, mussarela, bacon e cebola roxa.",M:"35,00",G:"54,00"},
-  {cat:"Pizzas Salgadas",num:"20",name:"Corinthiana",desc:"Calabresa, frango, bacon, milho e mussarela.",M:"35,00",G:"48,00"},
+  {cat:"Pizzas Salgadas",num:"19",name:"Contra Filé",desc:"Contra filé em tiras, mussarela, bacon e cebola roxa.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Salgadas",num:"20",name:"Corinthiana",desc:"Calabresa, frango, bacon, milho e mussarela.",M:"35,00",G:"51,00"},
   {cat:"Pizzas Salgadas",num:"21",name:"Costela",desc:"Costela desfiada, cebola roxa, catupiry e mussarela.",M:"35,00",G:"60,00"},
   {cat:"Pizzas Salgadas",num:"22",name:"Costela Especial",desc:"Costela desfiada, mussarela, cream cheese, pimentão e cebolinha.",M:"40,00",G:"65,00"},
-  {cat:"Pizzas Salgadas",num:"23",name:"Dinápole",desc:"Lombo, bacon, cebola, mussarela e tomate.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Salgadas",num:"24",name:"Dois Queijos",desc:"Mussarela e catupiry.",M:"35,00",G:"45,00"},
+  {cat:"Pizzas Salgadas",num:"23",name:"Dinápole",desc:"Lombo, bacon, cebola, mussarela e tomate.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Salgadas",num:"24",name:"Dois Queijos",desc:"Mussarela e catupiry.",M:"35,00",G:"50,00"},
   {cat:"Pizzas Salgadas",num:"25",name:"Doritos",desc:"Mussarela, catupiry e Doritos.",M:"35,00",G:"52,00"},
-  {cat:"Pizzas Salgadas",num:"27",name:"Fortaleza",desc:"Frango, ovo, milho e cheddar.",M:"35,00",G:"45,00"},
-  {cat:"Pizzas Salgadas",num:"28",name:"Carne Seca",desc:"Carne seca, mussarela ou catupiry e cebola.",M:"35,00",G:"52,00"},
-  {cat:"Pizzas Salgadas",num:"29",name:"Francesa",desc:"Presunto, ovo, mussarela e catupiry.",M:"35,00",G:"47,00"},
-  {cat:"Pizzas Salgadas",num:"30",name:"Frango Barbecue",desc:"Frango, mussarela, bacon e barbecue.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Salgadas",num:"31",name:"Frango c/ Catupiry",desc:"Frango desfiado com tempero especial e catupiry.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Salgadas",num:"32",name:"Lombo Especial",desc:"Lombo, cebola, palmito e mussarela.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"33",name:"Mafiosa",desc:"Calabresa, bacon, cebola e catupiry.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"34",name:"Marguerita",desc:"Mussarela, tomate e manjericão.",M:"35,00",G:"46,00"},
-  {cat:"Pizzas Salgadas",num:"35",name:"Flamenguista",desc:"Carne seca, mussarela, pimentão, pimenta biquinho e cebolinha.",M:"35,00",G:"53,00"},
+  {cat:"Pizzas Salgadas",num:"27",name:"Fortaleza",desc:"Frango, ovo, milho e cheddar.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"28",name:"Carne Seca",desc:"Carne seca, mussarela ou catupiry e cebola.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Salgadas",num:"29",name:"Francesa",desc:"Presunto, ovo, mussarela e catupiry.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"30",name:"Frango Barbecue",desc:"Frango, mussarela, bacon e barbecue.",M:"35,00",G:"52,00"},
+  {cat:"Pizzas Salgadas",num:"31",name:"Frango c/ Catupiry",desc:"Frango desfiado com tempero especial e catupiry.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"32",name:"Lombo Especial",desc:"Lombo, cebola, palmito e mussarela.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"33",name:"Mafiosa",desc:"Calabresa, bacon, cebola e catupiry.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"34",name:"Marguerita",desc:"Mussarela, tomate e manjericão.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"35",name:"Flamenguista",desc:"Carne seca, mussarela, pimentão, pimenta biquinho e cebolinha.",M:"35,00",G:"60,00"},
   {cat:"Pizzas Salgadas",num:"36",name:"Milho Verde",desc:"Milho verde e mussarela.",M:"35,00",G:"45,00"},
   {cat:"Pizzas Salgadas",num:"37",name:"Mussarela",desc:"Mussarela com rodelas de tomate.",M:"35,00",G:"46,00"},
-  {cat:"Pizzas Salgadas",num:"38",name:"Napolitana",desc:"Mussarela, tomate, parmesão e manjericão.",M:"35,00",G:"46,00"},
-  {cat:"Pizzas Salgadas",num:"39",name:"Nicole",desc:"Calabresa, champignon, bacon e catupiry.",M:"35,00",G:"47,00"},
-  {cat:"Pizzas Salgadas",num:"40",name:"Palmeirense",desc:"Calabresa, bacon, ervilha, tomate e mussarela.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Salgadas",num:"41",name:"Palmito",desc:"Palmito e mussarela.",M:"35,00",G:"45,00"},
-  {cat:"Pizzas Salgadas",num:"42",name:"Paulista",desc:"Calabresa, cebola e mussarela.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"43",name:"Caculé",desc:"Calabresa, cebola e catupiry.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"44",name:"Peito de Peru",desc:"Peito de peru, bacon, mussarela, palmito e cebola.",M:"35,00",G:"47,00"},
-  {cat:"Pizzas Salgadas",num:"45",name:"Peito de Peru c/ Cream Cheese",desc:"Peito de peru, mussarela e cream cheese.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"46",name:"Pepperoni",desc:"Pepperoni, mussarela, champignon e pimentão.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Salgadas",num:"47",name:"Portuguesa",desc:"Presunto, palmito, ervilha, milho, ovo e mussarela.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Salgadas",num:"48",name:"Quatro Queijos",desc:"Provolone, parmesão, catupiry e mussarela.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"38",name:"Napolitana",desc:"Mussarela, tomate, parmesão e manjericão.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"39",name:"Nicole",desc:"Calabresa, champignon, bacon e catupiry.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"40",name:"Palmeirense",desc:"Calabresa, bacon, ervilha, tomate e mussarela.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"41",name:"Palmito",desc:"Palmito e mussarela.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"42",name:"Paulista",desc:"Calabresa, cebola e mussarela.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"43",name:"Caculé",desc:"Calabresa, cebola e catupiry.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"44",name:"Peito de Peru",desc:"Peito de peru, bacon, mussarela, palmito e cebola.",M:"35,00",G:"54,00"},
+  {cat:"Pizzas Salgadas",num:"45",name:"Peito de Peru c/ Cream Cheese",desc:"Peito de peru, mussarela e cream cheese.",M:"35,00",G:"54,00"},
+  {cat:"Pizzas Salgadas",num:"46",name:"Pepperoni",desc:"Pepperoni, mussarela, champignon e pimentão.",M:"35,00",G:"54,00"},
+  {cat:"Pizzas Salgadas",num:"47",name:"Portuguesa",desc:"Presunto, palmito, ervilha, milho, ovo e mussarela.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"48",name:"Quatro Queijos",desc:"Provolone, parmesão, catupiry e mussarela.",M:"35,00",G:"54,00"},
   {cat:"Pizzas Salgadas",num:"49",name:"Rosbife",desc:"Rosbife, bacon, mussarela, cebola e alho frito.",M:"35,00",G:"52,00"},
-  {cat:"Pizzas Salgadas",num:"50",name:"Rúcula",desc:"Rúcula, mussarela de búfala e tomate seco.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"51",name:"Santista",desc:"Atum, palmito, cebola e catupiry.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"52",name:"São Paulina",desc:"Calabresa, frango, ovo, tomate e mussarela.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Salgadas",num:"53",name:"Strogonoff (Carne ou Frango)",desc:"Creme de leite, bacon, mussarela e batata palha.",M:"35,00",G:"52,00"},
+  {cat:"Pizzas Salgadas",num:"50",name:"Rúcula",desc:"Rúcula, mussarela de búfala e tomate seco.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Salgadas",num:"51",name:"Santista",desc:"Atum, palmito, cebola e catupiry.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Salgadas",num:"52",name:"São Paulina",desc:"Calabresa, frango, ovo, tomate e mussarela.",M:"35,00",G:"51,00"},
+  {cat:"Pizzas Salgadas",num:"53",name:"Strogonoff (Carne ou Frango)",desc:"Creme de leite, bacon, mussarela e batata palha.",M:"35,00",G:"55,00"},
   {cat:"Pizzas Salgadas",num:"54",name:"Sushi",desc:"Atum, cream cheese, cebolinha e molho tarê.",M:"35,00",G:"60,00"},
   // PIZZAS DOCES
-  {cat:"Pizzas Doces",num:"01",name:"Banana",desc:"Banana, mussarela, canela e leite condensado.",M:"35,00",G:"48,00"},
-  {cat:"Pizzas Doces",num:"02",name:"Chocolate",desc:"Chocolate e granulado. Borda de chocolate grátis.",M:"35,00",G:"47,00"},
-  {cat:"Pizzas Doces",num:"03",name:"Chocolate com Banana",desc:"Chocolate e banana.",M:"35,00",G:"47,00"},
-  {cat:"Pizzas Doces",num:"04",name:"Prestígio",desc:"Chocolate, coco ralado e leite condensado.",M:"35,00",G:"46,00"},
+  {cat:"Pizzas Doces",num:"01",name:"Banana",desc:"Banana, mussarela, canela e leite condensado.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Doces",num:"02",name:"Chocolate",desc:"Chocolate e granulado. Borda de chocolate grátis.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Doces",num:"03",name:"Chocolate com Banana",desc:"Chocolate e banana.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Doces",num:"04",name:"Prestígio",desc:"Chocolate, coco ralado e leite condensado.",M:"35,00",G:"50,00"},
   {cat:"Pizzas Doces",num:"05",name:"Romeu e Julieta",desc:"Goiabada e mussarela.",M:"35,00",G:"47,00"},
-  {cat:"Pizzas Doces",num:"06",name:"Chocolate c/ Morango",desc:"Chocolate coberto com morango.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"07",name:"Ouro Branco",desc:"Ouro Branco com chocolate ao leite.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"08",name:"Sonho de Valsa",desc:"Sonho de Valsa com chocolate ao leite.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"09",name:"Chocolate c/ Cereja",desc:"Chocolate ao leite com cereja.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Doces",num:"10",name:"Chocolate c/ Uva",desc:"Chocolate ao leite com uva.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"11",name:"Nutella",desc:"Nutella.",M:"35,00",G:"55,00"},
-  {cat:"Pizzas Doces",num:"12",name:"Nutella Especial",desc:"Nutella com leite ninho, morango ou uva.",M:"35,00",G:"59,00"},
+  {cat:"Pizzas Doces",num:"06",name:"Chocolate c/ Morango",desc:"Chocolate coberto com morango.",M:"35,00",G:"50,00"},
+  {cat:"Pizzas Doces",num:"07",name:"Ouro Branco",desc:"Ouro Branco com chocolate ao leite.",M:"35,00",G:"52,00"},
+  {cat:"Pizzas Doces",num:"08",name:"Sonho de Valsa",desc:"Sonho de Valsa com chocolate ao leite.",M:"35,00",G:"52,00"},
+  {cat:"Pizzas Doces",num:"09",name:"Chocolate c/ Cereja",desc:"Chocolate ao leite com cereja.",M:"35,00",G:"52,00"},
+  {cat:"Pizzas Doces",num:"10",name:"Chocolate c/ Uva",desc:"Chocolate ao leite com uva.",M:"35,00",G:"52,00"},
+  {cat:"Pizzas Doces",num:"11",name:"Nutella",desc:"Nutella.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Doces",num:"12",name:"Nutella Especial",desc:"Nutella com leite ninho, morango ou uva.",M:"35,00",G:"60,00"},
   {cat:"Pizzas Doces",num:"13",name:"Churros",desc:"Doce de leite, canela e açúcar cristal.",M:"35,00",G:"55,00"},
-  {cat:"Pizzas Doces",num:"14",name:"Paçoca",desc:"Paçoca com chocolate ao leite e leite condensado.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Doces",num:"15",name:"Casadinho",desc:"Chocolate ao leite e chocolate branco.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Doces",num:"16",name:"Fondue",desc:"Chocolate ao leite, uva, morango e chocolate branco.",M:"35,00",G:"54,00"},
-  {cat:"Pizzas Doces",num:"17",name:"Charge",desc:"Doce de leite, chocolate ao leite e amendoim.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"18",name:"Cookie",desc:"Chocolate ao leite e cookies.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"19",name:"Oreo",desc:"Chocolate ao leite e Oreo.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"20",name:"Ovomaltine",desc:"Chocolate ao leite e Ovomaltine.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Doces",num:"21",name:"Bis Branco",desc:"Chocolate ao leite com Bis branco.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Doces",num:"22",name:"Amor Nevada",desc:"Banana, chocolate branco, açúcar cristal e canela.",M:"35,00",G:"49,00"},
-  {cat:"Pizzas Doces",num:"23",name:"Amo Caculé",desc:"Morango, creme de morango e chocolate ao leite.",M:"35,00",G:"50,00"},
-  {cat:"Pizzas Doces",num:"24",name:"Kit Kat",desc:"Chocolate ao leite e biscoito Kit Kat.",M:"35,00",G:"49,00"},
+  {cat:"Pizzas Doces",num:"14",name:"Paçoca",desc:"Paçoca com chocolate ao leite e leite condensado.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"15",name:"Casadinho",desc:"Chocolate ao leite e chocolate branco.",M:"35,00",G:"52,00"},
+  {cat:"Pizzas Doces",num:"16",name:"Fondue",desc:"Chocolate ao leite, uva, morango e chocolate branco.",M:"35,00",G:"60,00"},
+  {cat:"Pizzas Doces",num:"17",name:"Charge",desc:"Doce de leite, chocolate ao leite e amendoim.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"18",name:"Cookie",desc:"Chocolate ao leite e cookies.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"19",name:"Oreo",desc:"Chocolate ao leite e Oreo.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"20",name:"Ovomaltine",desc:"Chocolate ao leite e Ovomaltine.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"21",name:"Bis Branco",desc:"Chocolate ao leite com Bis branco.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"22",name:"Amor Nevada",desc:"Banana, chocolate branco, açúcar cristal e canela.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"23",name:"Amo Caculé",desc:"Morango, creme de morango e chocolate ao leite.",M:"35,00",G:"55,00"},
+  {cat:"Pizzas Doces",num:"24",name:"Kit Kat",desc:"Chocolate ao leite e biscoito Kit Kat.",M:"35,00",G:"55,00"},
   {cat:"Pizzas Doces",num:"25",name:"M&M",desc:"Chocolate ao leite com M&M.",M:"35,00",G:"55,00"},
   // ESFIHAS SALGADAS
-  {cat:"Esfihas Salgadas",name:"Atum",price:"3,50"},
-  {cat:"Esfihas Salgadas",name:"Arruela",price:"3,60"},
+  {cat:"Esfihas Salgadas",name:"Atum",price:"4,50"},
+  {cat:"Esfihas Salgadas",name:"Arruela",price:"5,00"},
   {cat:"Esfihas Salgadas",name:"Bacon c/ mussarela",price:"3,50"},
   {cat:"Esfihas Salgadas",name:"Bauru",price:"3,80"},
   {cat:"Esfihas Salgadas",name:"Baiana",price:"3,80"},
@@ -419,7 +444,7 @@ const MENU = [
   {cat:"Esfihas Salgadas",name:"Alho frito",price:"3,90"},
   {cat:"Esfihas Salgadas",name:"Peperone e mussarela",price:"4,00"},
   {cat:"Esfihas Salgadas",name:"Costela desfiada c/ cebola roxa e catupiry",price:"4,50"},
-  {cat:"Esfihas Salgadas",name:"Camarão, mussarela e cebolinha",price:"5,00"},
+  {cat:"Esfihas Salgadas",name:"Camarão, mussarela e cebolinha",price:"6,00"},
   // ESFIHAS DOCES
   {cat:"Esfihas Doces",name:"Banana c/ mussarela",price:"5,00"},
   {cat:"Esfihas Doces",name:"Chocolate c/ granulado",price:"5,00"},
@@ -464,18 +489,18 @@ const MENU = [
 
 const BEBIDAS = [
   {sub:"🥤 Refrigerantes", items:[
-    {name:"Coca-Cola 2 litros",price:"15,00"},
-    {name:"Coca-Cola 1 litro",price:"10,00"},
+    {name:"Coca-Cola 2 litros",price:"16,00"},
+    {name:"Coca-Cola 1 litro",price:"12,00"},
     {name:"Coca-Cola 600 ml",price:"8,00"},
-    {name:"Coca-Cola KS 1 litro",price:"10,00"},
-    {name:"Coca-Cola KS Zero 1 litro",price:"10,00"},
+    {name:"Coca-Cola KS 1 litro",price:"12,00"},
+    {name:"Coca-Cola KS Zero 1 litro",price:"12,00"},
     {name:"Coca-Cola KS 290ml",price:"5,00"},
     {name:"Coca-Cola Zero 2 litros",price:"15,00"},
     {name:"Coca-Cola Zero lata",price:"5,00"},
     {name:"Guaraná 2 litros",price:"15,00"},
     {name:"Fanta Laranja 2 litros",price:"15,00"},
     {name:"Fanta Uva 2 litros",price:"15,00"},
-    {name:"Tubaína 2 litros",price:"9,00"},
+    {name:"Tubaína 2 litros",price:"10,00"},
     {name:"Coca-Cola lata",price:"5,00"},
     {name:"Guaraná lata",price:"5,00"},
     {name:"Fanta Laranja lata",price:"5,00"},
@@ -483,8 +508,8 @@ const BEBIDAS = [
     {name:"Limoneto 500ml",price:"8,00"},
   ]},
   {sub:"🧃 Sucos Naturais", sabores:"Abacaxi c/ hortelã · Limonada suíça · Acerola · Melancia · Morango · Laranja · Goiaba · Limão · Maracujá", items:[
-    {name:"Copo",price:"8,00"},
-    {name:"Jarra",price:"12,00"},
+    {name:"Copo",price:"7,00"},
+    {name:"Jarra",price:"15,00"},
   ]},
   {sub:"🍺 Cervejas Long Neck", items:[
     {name:"Heineken",price:"10,00"},
@@ -498,9 +523,9 @@ const BEBIDAS = [
     {name:"Amstel",price:"11,00"},
     {name:"Budweiser",price:"12,00"},
     {name:"Original",price:"12,00"},
-    {name:"Antarctica",price:"10,00"},
-    {name:"Brahma",price:"10,00"},
-    {name:"Skol",price:"10,00"},
+    {name:"Antarctica",price:"11,00"},
+    {name:"Brahma",price:"11,00"},
+    {name:"Skol",price:"11,00"},
   ]},
   {sub:"🍹 Caipirinhas", sabores:"Limão · Kiwi · Tropical · Morango · Maracujá · Abacaxi", items:[
     {name:"Vodka Smirnoff",price:"12,00"},
@@ -512,7 +537,7 @@ const BEBIDAS = [
     {name:"Mineral sem gás",price:"4,00"},
   ]},
   {sub:"🍷 Vinhos", items:[
-    {name:"Taça (tinto ou branco)",price:"12,00"},
+    {name:"Taça (tinto ou branco)",price:"10,00"},
   ]},
 ];
 
@@ -553,7 +578,9 @@ function renderPromo(){
 
 function renderMenu(){
   const q=busca.toLowerCase();
-  const el=document.getElementById("conteudo");if(catAtiva==="Bebidas"){
+  const el=document.getElementById("conteudo");
+
+  if(catAtiva==="Bebidas"){
     const secsFiltradas = q
       ? BEBIDAS.map(s=>({...s,items:s.items.filter(i=>i.name.toLowerCase().includes(q))})).filter(s=>s.items.length)
       : BEBIDAS;
@@ -617,7 +644,30 @@ function renderGroup(items,cat){
 
 document.getElementById("busca").addEventListener("input",e=>{busca=e.target.value;renderMenu();});
 renderCats();renderSections();
+
+// Mostra botão de bebidas quando não está na aba Bebidas
+function atualizarBotaoBebidas(){
+  const btn = document.getElementById("btnBebidas");
+  if(catAtiva !== "Bebidas"){
+    btn.classList.add("visible");
+  } else {
+    btn.classList.remove("visible");
+  }
+}
+
+function irParaBebidas(){
+  setcat("Bebidas");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+// Override setcat to also update button
+const _setcat = window.setcat;
+window.setcat = (c) => { _setcat(c); atualizarBotaoBebidas(); };
+atualizarBotaoBebidas();
 </script>
+<button class="btn-bebidas" id="btnBebidas" onclick="irParaBebidas()">
+  🍺 Ver Bebidas
+</button>
+
 </body>
 </html>
-
