@@ -8,35 +8,48 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
 :root {
-  --bg: #1a0000;
-  --card-bg: rgba(255,255,255,0.04);
-  --card-border: rgba(212,160,23,0.18);
-  --dourado: #D4A017;
-  --dourado-claro: #f5c842;
+  --bg: #120005;
+  --bg2: #1c0008;
+  --card-bg: rgba(255,255,255,0.035);
+  --card-border: rgba(212,160,23,0.15);
+  --card-hover: rgba(212,160,23,0.25);
+  --dourado: #C9920A;
+  --dourado-claro: #f0c040;
   --vermelho: #8B0000;
+  --vermelho-vivo: #b01020;
   --texto: #f5ede0;
-  --texto-suave: rgba(245,237,224,0.65);
-  --linha: rgba(212,160,23,0.2);
+  --texto-suave: rgba(245,237,224,0.55);
+  --linha: rgba(212,160,23,0.15);
 }
 * { box-sizing:border-box; margin:0; padding:0; }
+
 body {
   font-family: 'Lato', sans-serif;
   background: var(--bg);
   color: var(--texto);
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding-bottom: 80px;
 }
+
+/* TEXTURA DE FUNDO */
 body::before {
   content:'';
-  position:fixed;
-  top:-120px; left:50%;
-  transform:translateX(-50%);
-  width:600px; height:400px;
-  background: radial-gradient(ellipse, rgba(180,30,30,0.35) 0%, transparent 70%);
+  position:fixed; inset:0;
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(139,0,0,0.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(80,0,30,0.3) 0%, transparent 55%),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.008) 0px,
+      rgba(255,255,255,0.008) 1px,
+      transparent 1px,
+      transparent 14px
+    );
   pointer-events:none;
   z-index:0;
 }
 
+/* HEADER */
 /* HEADER */
 header {
   position: relative;
@@ -99,8 +112,16 @@ header {
 /* AVISOS */
 .avisos-wrap { max-width:520px; margin:12px auto 0; padding:0 16px; display:flex; flex-direction:column; gap:8px; }
 .aviso-box { border-radius:10px; padding:10px 14px; font-size:11.5px; text-align:center; line-height:1.6; }
-.aviso-pizza { background:rgba(212,160,23,0.08); border:1px solid rgba(212,160,23,0.25); color:var(--dourado-claro); }
-.aviso-beirute { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:var(--texto-suave); }
+.aviso-pizza {
+  background: linear-gradient(135deg, rgba(212,160,23,0.1), rgba(212,160,23,0.05));
+  border:1px solid rgba(212,160,23,0.3); color:var(--dourado-claro);
+  border-radius:14px;
+}
+.aviso-beirute {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.1); color:var(--texto-suave);
+  border-radius:14px;
+}
 
 /* SEARCH */
 .search-wrap { max-width:520px; margin:14px auto 0; padding:0 16px; }
@@ -126,28 +147,38 @@ nav#cats {
 }
 nav#cats::-webkit-scrollbar { display:none; }
 nav#cats button {
-  white-space:nowrap; background:transparent;
-  border:1px solid rgba(212,160,23,0.3); border-radius:50px;
-  padding:7px 16px; font-family:'Lato',sans-serif;
-  font-size:12px; font-weight:700; color:var(--dourado);
-  cursor:pointer; letter-spacing:0.5px; transition:all .2s;
+  white-space:nowrap;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border:1px solid rgba(212,160,23,0.2); border-radius:50px;
+  padding:8px 18px; font-family:'Cinzel',serif;
+  font-size:11px; font-weight:700; color:rgba(212,160,23,0.7);
+  cursor:pointer; letter-spacing:1px; transition:all .25s;
 }
 nav#cats button.active, nav#cats button:hover {
-  background:var(--dourado); border-color:var(--dourado); color:#1a0000;
+  background: linear-gradient(135deg, var(--dourado), #a07010);
+  border-color:var(--dourado); color:#1a0000;
+  box-shadow: 0 4px 15px rgba(212,160,23,0.3);
 }
 
 /* PROMO PIZZA */
 .promo-banner { max-width:488px; margin:0 auto 16px; padding:0 16px; }
 .promo-inner {
-  background:linear-gradient(110deg,#5a0000 0%,#2a0000 100%);
-  border:2px solid var(--dourado-claro); border-radius:14px; padding:16px;
+  background: linear-gradient(135deg, #5a0000 0%, #3a0010 50%, #1a0005 100%);
+  border:2px solid var(--dourado-claro); border-radius:20px; padding:18px;
   position:relative; overflow:hidden;
+  box-shadow: 0 8px 32px rgba(139,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 .promo-inner::before {
   content:'';
-  position:absolute; top:-30px; right:-30px;
-  width:120px; height:120px;
-  background:radial-gradient(circle, rgba(245,200,66,0.15) 0%, transparent 70%);
+  position:absolute; top:-40px; right:-40px;
+  width:160px; height:160px;
+  background:radial-gradient(circle, rgba(245,200,66,0.12) 0%, transparent 70%);
+}
+.promo-inner::after {
+  content:'';
+  position:absolute; bottom:-20px; left:-20px;
+  width:100px; height:100px;
+  background:radial-gradient(circle, rgba(176,16,32,0.2) 0%, transparent 70%);
 }
 .promo-inner h3 {
   font-family:'Cinzel',serif; font-size:15px;
@@ -172,12 +203,16 @@ nav#cats button.active, nav#cats button:hover {
 /* MAIN */
 main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-index:1; }
 .section-title {
-  font-family:'Cinzel',serif; font-size:13px; letter-spacing:3px;
+  font-family:'Cinzel',serif; font-size:12px; letter-spacing:3px;
   text-transform:uppercase; color:var(--dourado);
-  border-bottom:1px solid var(--linha); padding-bottom:8px; margin:22px 0 12px;
-  display:flex; align-items:center; gap:10px;
+  padding-bottom:10px; margin:24px 0 14px;
+  display:flex; align-items:center; gap:12px;
+  position:relative;
 }
-.section-title::before { content:''; display:inline-block; width:20px; height:2px; background:var(--dourado); flex-shrink:0; }
+.section-title::after {
+  content:''; flex:1; height:1px;
+  background: linear-gradient(90deg, rgba(212,160,23,0.4), transparent);
+}
 
 /* PIZZA CARD */
 .pizza-card {
@@ -200,30 +235,53 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
 /* GRID */
 .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:4px; }
 .mini-card {
-  background:var(--card-bg); border:1px solid var(--card-border);
-  border-radius:10px; padding:10px 12px; transition:border-color .15s;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+  border:1px solid var(--card-border);
+  border-radius:14px; padding:12px 14px;
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+  position:relative;
 }
-.mini-card:hover { border-color:rgba(212,160,23,0.4); }
-.mini-name { font-size:12px; font-weight:700; color:#fff; line-height:1.3; margin-bottom:4px; }
-.mini-desc { font-size:11px; color:var(--texto-suave); line-height:1.4; margin-bottom:4px; }
-.mini-price { font-family:'Cinzel',serif; font-size:13px; color:var(--dourado-claro); }
+.mini-card:hover {
+  border-color:var(--card-hover);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+.mini-name { font-size:12px; font-weight:700; color:#fff; line-height:1.4; margin-bottom:6px; }
+.mini-desc { font-size:10.5px; color:var(--texto-suave); line-height:1.4; margin-bottom:6px; }
+.mini-price {
+  font-family:'Cinzel',serif; font-size:14px;
+  color:var(--dourado-claro); font-weight:700;
+  display:block;
+}
 
 /* BEBIDAS SUBCATEGORIA */
 .beb-section { margin-bottom:20px; }
 .beb-subtitle {
+  font-family:'Cinzel',serif;
   font-size:11px; font-weight:700; letter-spacing:2px;
   text-transform:uppercase; color:var(--dourado);
-  margin-bottom:8px; padding-left:4px;
-  opacity:0.7;
+  margin-bottom:8px; padding-left:2px;
+  display:flex; align-items:center; gap:8px;
+}
+.beb-subtitle::after {
+  content:''; flex:1; height:1px;
+  background: linear-gradient(90deg, rgba(212,160,23,0.3), transparent);
 }
 .beb-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
 .beb-card {
-  background:var(--card-bg); border:1px solid var(--card-border);
-  border-radius:10px; padding:9px 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border:1px solid var(--card-border);
+  border-radius:12px; padding:10px 14px;
   display:flex; align-items:center; justify-content:space-between; gap:8px;
+  transition: border-color .2s, transform .15s;
 }
+.beb-card:hover { border-color:var(--card-hover); transform:translateX(2px); }
 .beb-name { font-size:12px; font-weight:600; color:var(--texto); line-height:1.3; flex:1; }
-.beb-price { font-family:'Cinzel',serif; font-size:13px; color:var(--dourado-claro); white-space:nowrap; flex-shrink:0; }
+.beb-price {
+  font-family:'Cinzel',serif; font-size:13px;
+  color:var(--dourado-claro); white-space:nowrap; flex-shrink:0;
+  font-weight:700;
+}
 
 /* sabores note */
 .sabores-note {
@@ -242,6 +300,18 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
   font-size:12px; color:var(--dourado);
   margin-bottom:12px; text-align:center;
 }
+.acomp-note {
+  margin-top:14px;
+  background: linear-gradient(135deg, rgba(212,160,23,0.08), rgba(212,160,23,0.04));
+  border:1px solid rgba(212,160,23,0.25);
+  border-radius:14px;
+  padding:14px 18px;
+  font-size:12px;
+  color:var(--texto-suave);
+  line-height:2;
+  text-align:center;
+}
+.acomp-note strong { color:var(--dourado-claro); }
 .empty { text-align:center; padding:40px 0; color:var(--texto-suave); font-size:13px; }
 
 /* BOTÃO FLUTUANTE BEBIDAS */
@@ -485,6 +555,14 @@ const MENU = [
   {cat:"Beirutes",num:"16",name:"Salermo",desc:"Salame e bacon.",price:"35,00"},
   {cat:"Beirutes",num:"17",name:"Costela",desc:"Costela desfiada, cebola roxa e pimenta biquinho.",price:"40,00"},
   {cat:"Beirutes",num:"18",name:"Rosbife",price:"37,00"},
+
+  // PORÇÕES
+  {cat:"Porções",name:"Contra filé acebolado",price:"45,00"},
+  {cat:"Porções",name:"Carne de sol",price:"45,00"},
+  {cat:"Porções",name:"Torresmo",price:"40,00"},
+  {cat:"Porções",name:"Calabresa acebolada",price:"26,00"},
+  {cat:"Porções",name:"Batata frita",price:"26,00"},
+  {cat:"Porções",name:"Batata c/ cheddar e bacon",price:"35,00"},
 ];
 
 const BEBIDAS = [
@@ -520,12 +598,11 @@ const BEBIDAS = [
     {name:"Budweiser",price:"9,00"},
     {name:"Amstel",price:"9,00"},
     {name:"Amstel Ultra s/ Glúten lata",price:"5,00"},
-    {name:"Praya s/ Glúten",price:"9,00"},
+    {name:"Praya s/ Glúten",price:"7,00"},
     {name:"Baden Baden lata",price:"9,00"},
   ]},
   {sub:"🍺 Cervejas 600ml", items:[
     {name:"Heineken",price:"17,00"},
-    {name:"Stella Artois",price:"17,00"},
     {name:"Amstel",price:"11,00"},
     {name:"Budweiser",price:"12,00"},
     {name:"Original",price:"12,00"},
@@ -558,129 +635,141 @@ const BEBIDAS = [
     {name:"Taça (tinto ou branco)",price:"10,00"},
   ]},
 ];
+const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes","Porções"];
+var cats = ["Todos"];
+(function(){
+  var seen = {};
+  for(var i=0;i<MENU.length;i++){
+    var c = MENU[i].cat;
+    if(!seen[c]){ seen[c]=1; cats.push(c); }
+  }
+  cats.push("Bebidas");
+})();
 
-const GRID_CATS=["Esfihas Salgadas","Esfihas Doces","Beirutes",];
-const cats=["Todos",...new Set(MENU.map(i=>i.cat)),"Bebidas"];
-let catAtiva="Todos",busca="";
+var catAtiva = "Todos";
+var busca = "";
 
 function renderCats(){
-  document.getElementById("cats").innerHTML=cats.map(c=>
-    `<button class="${catAtiva===c?"active":""}" onclick="setcat('${c}')">${c}</button>`
-  ).join("");
+  var nav = document.getElementById("cats");
+  var out = "";
+  for(var i=0;i<cats.length;i++){
+    var c = cats[i];
+    out += '<button class="'+(catAtiva===c?"active":"")+'" onclick="setcat(\'' +c+ '\')">' +c+ '</button>';
+  }
+  nav.innerHTML = out;
 }
-window.setcat=(c)=>{catAtiva=c;renderCats();renderSections();};
 
-function renderSections(){
-  renderPromo();
-  renderMenu();
-}
+window.setcat = function(c){ catAtiva=c; renderCats(); renderSections(); atualizarBotaoBebidas(); };
+
+function renderSections(){ renderPromo(); renderMenu(); }
 
 function renderPromo(){
-  const show=catAtiva==="Todos"||catAtiva==="Pizzas Salgadas";
-  document.getElementById("promo-section").innerHTML=show?`
-    <div class="promo-banner"><div class="promo-inner">
-      <h3>🔥 PROMOÇÃO DE PIZZAS</h3>
-      <div class="promo-pills">
-        ${["Baiana","Brasileira","Lombo Especial","Bauru","Caculé","Americana","Palmito"].map(p=>`<span class="promo-pill">${p}</span>`).join("")}
-      </div>
-      <div class="promo-destaque">
-        <div>
-          <div class="promo-preco-label">Preço promocional</div>
-          <div class="promo-preco-val">R$ 39,90</div>
-          <div class="promo-borda">✅ Borda recheada grátis!</div>
-        </div>
-      </div>
-      <p class="promo-obs">Válido de segunda a quinta · Exceto vésperas e feriados</p>
-    </div></div>`:"";
+  var el = document.getElementById("promo-section");
+  if(catAtiva!=="Todos" && catAtiva!=="Pizzas Salgadas"){ el.innerHTML=""; return; }
+  var ps = ["Baiana","Brasileira","Lombo Especial","Bauru","Caculé","Americana","Palmito"];
+  var ph = ""; for(var i=0;i<ps.length;i++) ph += '<span class="promo-pill">'+ps[i]+'</span>';
+  el.innerHTML = '<div class="promo-banner"><div class="promo-inner"><h3>🔥 PROMOÇÃO DE PIZZAS</h3><div class="promo-pills">'+ph+'</div><div class="promo-destaque"><div><div class="promo-preco-label">Preço promocional</div><div class="promo-preco-val">R$ 39,90</div><div class="promo-borda">✅ Borda recheada grátis!</div></div></div><p class="promo-obs">Válido de segunda a quinta · Exceto vésperas e feriados</p></div></div>';
 }
 
 function renderMenu(){
-  const q=busca.toLowerCase();
-  const el=document.getElementById("conteudo");
+  var q = busca.toLowerCase();
+  var el = document.getElementById("conteudo");
 
   if(catAtiva==="Bebidas"){
-    const secsFiltradas = q
-      ? BEBIDAS.map(s=>({...s,items:s.items.filter(i=>i.name.toLowerCase().includes(q))})).filter(s=>s.items.length)
-      : BEBIDAS;
-    if(!secsFiltradas.length){el.innerHTML='<div class="empty">Nenhuma bebida encontrada.</div>';return;}
-    el.innerHTML=secsFiltradas.map(s=>`
-      <div class="beb-section">
-        <div class="beb-subtitle">${s.sub}</div>
-        ${s.sabores?`<div class="sabores-note">Sabores: ${s.sabores}</div>`:""}
-        <div class="beb-grid">
-          ${s.items.map(i=>`
-            <div class="beb-card">
-              <span class="beb-name">${i.name}</span>
-              <span class="beb-price">R$ ${i.price}</span>
-            </div>`).join("")}
-        </div>
-      </div>`).join("");
+    var out = "";
+    for(var s=0;s<BEBIDAS.length;s++){
+      var sec = BEBIDAS[s];
+      var fitems = [];
+      for(var ii=0;ii<sec.items.length;ii++){
+        if(!q || sec.items[ii].name.toLowerCase().indexOf(q)!==-1) fitems.push(sec.items[ii]);
+      }
+      if(!fitems.length) continue;
+      out += '<div class="beb-section"><div class="beb-subtitle">'+sec.sub+'</div>';
+      if(sec.sabores) out += '<div class="sabores-note">'+sec.sabores+'</div>';
+      out += '<div class="beb-grid">';
+      for(var ii=0;ii<fitems.length;ii++){
+        out += '<div class="beb-card"><span class="beb-name">'+fitems[ii].name+'</span><span class="beb-price">R$ '+fitems[ii].price+'</span></div>';
+      }
+      out += '</div></div>';
+    }
+    el.innerHTML = out || '<div class="empty">Nenhuma bebida encontrada.</div>';
     return;
   }
 
-  const fil=MENU.filter(i=>{
-    const mc=catAtiva==="Todos"||i.cat===catAtiva;
-    const mb=(i.name+" "+(i.desc||"")).toLowerCase().includes(q);
-    return mc&&mb;
-  });
-  if(!fil.length){el.innerHTML='<div class="empty">Nenhum item encontrado.</div>';return;}
+  var fil = [];
+  for(var i=0;i<MENU.length;i++){
+    var mc = catAtiva==="Todos" || MENU[i].cat===catAtiva;
+    var mb = (MENU[i].name+" "+(MENU[i].desc||"")).toLowerCase().indexOf(q)!==-1;
+    if(mc && mb) fil.push(MENU[i]);
+  }
+  if(!fil.length){ el.innerHTML='<div class="empty">Nenhum item encontrado.</div>'; return; }
+
   if(catAtiva==="Todos"){
-    const gs=[...new Set(fil.map(i=>i.cat))];
-    el.innerHTML=gs.map(g=>`
-      <h2 class="section-title">${g}</h2>
-      ${renderGroup(fil.filter(i=>i.cat===g),g)}`).join("");
+    var grupos = [];
+    for(var i=0;i<fil.length;i++){
+      if(grupos.indexOf(fil[i].cat)===-1) grupos.push(fil[i].cat);
+    }
+    var out = "";
+    for(var g=0;g<grupos.length;g++){
+      var gi = [];
+      for(var i=0;i<fil.length;i++){ if(fil[i].cat===grupos[g]) gi.push(fil[i]); }
+      out += '<h2 class="section-title">'+grupos[g]+'</h2>'+renderGroup(gi,grupos[g]);
+    }
+    el.innerHTML = out;
   } else {
-    el.innerHTML=renderGroup(fil,catAtiva);
+    el.innerHTML = renderGroup(fil, catAtiva);
   }
 }
 
-function renderGroup(items,cat){
-  if(GRID_CATS.includes(cat)){
-    return `<div class="grid-2">${items.map(i=>`
-      <div class="mini-card">
-        ${i.num?`<div class="pizza-num">#${i.num}</div>`:""}
-        <div class="mini-name">${i.name}</div>
-        ${i.desc?`<div class="mini-desc">${i.desc}</div>`:""}
-        <div class="mini-price">R$ ${i.price}</div>
-      </div>`).join("")}</div>`;
+function renderGroup(items, cat){
+  var isGrid = GRID_CATS.indexOf(cat)!==-1;
+  var out = "";
+  if(isGrid){
+    out = '<div class="grid-2">';
+    for(var i=0;i<items.length;i++){
+      var it = items[i];
+      out += '<div class="mini-card">';
+      if(it.num) out += '<div class="pizza-num">#'+it.num+'</div>';
+      out += '<div class="mini-name">'+it.name+'</div>';
+      if(it.desc) out += '<div class="mini-desc">'+it.desc+'</div>';
+      out += '<div class="mini-price">R$ '+it.price+'</div></div>';
+    }
+    out += '</div>';
+    if(cat==="Porções"){
+      out += '<div class="acomp-note">🍟 <strong>Acompanhamentos disponíveis</strong><br>1 acompanhamento: <strong>R$ 5,00</strong> &nbsp;·&nbsp; 2 acompanhamentos: <strong>R$ 10,00</strong><br><span style="font-size:10.5px;opacity:0.6">Opções: Aipim · Batata Frita</span></div>';
+    }
+    return out;
   }
-  const fatias = (cat==="Pizzas Salgadas"||cat==="Pizzas Doces")
-    ? `<div class="fatias-note">🍕 <strong>G</strong> — 8 fatias &nbsp;·&nbsp; <strong>M</strong> — 4 fatias</div>` : "";
-  return fatias + items.map(i=>`
-    <div class="pizza-card">
-      <div class="pizza-left">
-        ${i.num?`<div class="pizza-num">#${i.num}</div>`:""}
-        <div class="pizza-name">${i.name}</div>
-        ${i.desc?`<div class="pizza-desc">${i.desc}</div>`:""}
-      </div>
-      <div class="pizza-prices">
-        <div class="price-row"><span class="size-label">G</span><span class="price-val grande">R$ ${i.G}</span></div>
-        <div class="price-row"><span class="size-label">M</span><span class="price-val">R$ ${i.M}</span></div>
-      </div>
-    </div>`).join("");
+  for(var i=0;i<items.length;i++){
+    var it = items[i];
+    out += '<div class="pizza-card"><div class="pizza-left">';
+    if(it.num) out += '<div class="pizza-num">#'+it.num+'</div>';
+    out += '<div class="pizza-name">'+it.name+'</div>';
+    if(it.desc) out += '<div class="pizza-desc">'+it.desc+'</div>';
+    out += '</div><div class="pizza-prices">';
+    out += '<div class="price-row"><span class="size-label">G</span><span class="price-val grande">R$ '+it.G+'</span></div>';
+    out += '<div class="price-row"><span class="size-label">M</span><span class="price-val">R$ '+it.M+'</span></div>';
+    out += '</div></div>';
+  }
+  return out;
 }
 
-document.getElementById("busca").addEventListener("input",e=>{busca=e.target.value;renderMenu();});
-renderCats();renderSections();
-
-// Mostra botão de bebidas quando não está na aba Bebidas
 function atualizarBotaoBebidas(){
-  const btn = document.getElementById("btnBebidas");
-  if(catAtiva !== "Bebidas"){
-    btn.classList.add("visible");
-  } else {
-    btn.classList.remove("visible");
-  }
+  var btn = document.getElementById("btnBebidas");
+  if(!btn) return;
+  if(catAtiva!=="Bebidas"){ btn.classList.add("visible"); }
+  else { btn.classList.remove("visible"); }
 }
 
 function irParaBebidas(){
-  setcat("Bebidas");
-  window.scrollTo({top:0, behavior:"smooth"});
+  window.setcat("Bebidas");
+  window.scrollTo(0,0);
 }
 
-// Override setcat to also update button
-const _setcat = window.setcat;
-window.setcat = (c) => { _setcat(c); atualizarBotaoBebidas(); };
+document.getElementById("busca").addEventListener("input", function(e){ busca=e.target.value; renderMenu(); });
+
+renderCats();
+renderSections();
 atualizarBotaoBebidas();
 </script>
 <button class="btn-bebidas" id="btnBebidas" onclick="irParaBebidas()">
