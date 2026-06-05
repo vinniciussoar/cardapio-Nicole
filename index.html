@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cardápio — Pizzaria Nicole Caculé</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700&family=Marcellus&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
 :root {
@@ -75,13 +75,21 @@ header {
   padding: 0 20px 20px;
 }
 .header-logo-circle {
-  width: 140px;
-  height: 140px;
+  width: 144px;
+  height: 144px;
   border-radius: 50%;
-  border: 3px solid var(--dourado);
-  box-shadow: 0 0 0 6px rgba(10,0,5,1), 0 0 30px rgba(212,160,23,0.4);
+  padding: 3px;
+  background: linear-gradient(135deg, #f5c842, #C9920A, #8B0000, #C9920A, #f5c842);
+  background-size: 300% 300%;
+  animation: shimmerRing 6s ease infinite;
+  box-shadow: 0 0 0 5px rgba(10,0,5,1), 0 8px 40px rgba(212,160,23,0.35);
   overflow: hidden;
   flex-shrink: 0;
+}
+.header-logo-circle img { border-radius: 50%; }
+@keyframes shimmerRing {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 .header-logo-circle img {
   width: 100%;
@@ -96,17 +104,19 @@ header {
 .header-anos {
   font-family: 'Cinzel', serif;
   font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--dourado);
+  letter-spacing: 2.5px;
+  color: var(--dourado-claro);
   text-transform: uppercase;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 .header-tagline {
-  font-size: 11px;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 1px;
-  margin-top: 4px;
-  line-height: 1.5;
+  font-family: 'Marcellus', serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  line-height: 1.6;
 }
 
 .gold-divider {
@@ -139,13 +149,21 @@ header {
   padding: 0 20px 20px;
 }
 .header-logo-circle {
-  width: 140px;
-  height: 140px;
+  width: 144px;
+  height: 144px;
   border-radius: 50%;
-  border: 3px solid var(--dourado);
-  box-shadow: 0 0 0 6px rgba(10,0,5,1), 0 0 30px rgba(212,160,23,0.4);
+  padding: 3px;
+  background: linear-gradient(135deg, #f5c842, #C9920A, #8B0000, #C9920A, #f5c842);
+  background-size: 300% 300%;
+  animation: shimmerRing 6s ease infinite;
+  box-shadow: 0 0 0 5px rgba(10,0,5,1), 0 8px 40px rgba(212,160,23,0.35);
   overflow: hidden;
   flex-shrink: 0;
+}
+.header-logo-circle img { border-radius: 50%; }
+@keyframes shimmerRing {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 .header-logo-circle img {
   width: 100%;
@@ -160,17 +178,19 @@ header {
 .header-anos {
   font-family: 'Cinzel', serif;
   font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--dourado);
+  letter-spacing: 2.5px;
+  color: var(--dourado-claro);
   text-transform: uppercase;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 .header-tagline {
-  font-size: 11px;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 1px;
-  margin-top: 4px;
-  line-height: 1.5;
+  font-family: 'Marcellus', serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  line-height: 1.6;
 }
 
 .gold-divider {
@@ -258,13 +278,15 @@ header {
 .search-inner { position:relative; }
 .search-inner input {
   width:100%;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(212,160,23,0.3);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(212,160,23,0.25);
   border-radius:50px;
-  padding:11px 44px 11px 18px;
-  font-size:13px; font-family:'Lato',sans-serif;
-  color:var(--texto); outline:none; transition:border-color .2s;
+  padding:13px 46px 13px 20px;
+  font-size:14px; font-family:'Marcellus',serif;
+  color:var(--texto); outline:none;
+  transition:border-color .2s, box-shadow .2s;
 }
+.search-inner input:focus { box-shadow:0 0 0 3px rgba(212,160,23,0.1); }
 .search-inner input::placeholder { color:rgba(245,237,224,0.35); }
 .search-inner input:focus { border-color:var(--dourado); }
 .search-inner i { position:absolute; right:16px; top:50%; transform:translateY(-50%); color:var(--dourado); font-size:14px; }
@@ -339,11 +361,16 @@ nav#cats button.active, nav#cats button:hover {
 /* MAIN */
 main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-index:1; }
 .section-title {
-  font-family:'Cinzel',serif; font-size:12px; letter-spacing:3px;
-  text-transform:uppercase; color:var(--dourado);
-  padding-bottom:10px; margin:24px 0 14px;
+  font-family:'Cinzel',serif; font-size:13px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--dourado-claro);
+  padding-bottom:10px; margin:28px 0 16px;
   display:flex; align-items:center; gap:12px;
-  position:relative;
+  position:relative; font-weight:600;
+}
+.section-title::before {
+  content:''; width:14px; height:14px; flex-shrink:0;
+  background:radial-gradient(circle, var(--dourado) 30%, transparent 60%);
+  opacity:0.6;
 }
 .section-title::after {
   content:''; flex:1; height:1px;
@@ -360,7 +387,7 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
 .pizza-card:hover { border-color:rgba(212,160,23,0.4); }
 .pizza-left { flex:1; min-width:0; }
 .pizza-num { font-size:10px; color:var(--dourado); font-weight:700; letter-spacing:1px; margin-bottom:1px; }
-.pizza-name { font-weight:700; font-size:14px; color:#fff; line-height:1.3; }
+.pizza-name { font-family:'Marcellus',serif; font-weight:400; font-size:15.5px; color:#fff; line-height:1.3; letter-spacing:0.3px; }
 .pizza-desc { font-size:11.5px; color:var(--texto-suave); margin-top:3px; line-height:1.4; }
 .pizza-prices { display:flex; flex-direction:column; align-items:flex-end; gap:5px; flex-shrink:0; }
 .price-row { display:flex; align-items:center; gap:5px; }
@@ -382,7 +409,7 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
   transform:translateY(-2px);
   box-shadow:0 6px 20px rgba(0,0,0,0.3);
 }
-.mini-name { font-size:12px; font-weight:700; color:#fff; line-height:1.4; margin-bottom:6px; }
+.mini-name { font-family:'Marcellus',serif; font-size:13.5px; font-weight:400; color:#fff; line-height:1.35; margin-bottom:6px; letter-spacing:0.2px; }
 .mini-desc { font-size:10.5px; color:var(--texto-suave); line-height:1.4; margin-bottom:6px; }
 .mini-price {
   font-family:'Cinzel',serif; font-size:14px;
@@ -412,7 +439,7 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
   transition: border-color .2s, transform .15s;
 }
 .beb-card:hover { border-color:var(--card-hover); transform:translateX(2px); }
-.beb-name { font-size:12px; font-weight:600; color:var(--texto); line-height:1.3; flex:1; }
+.beb-name { font-family:'Marcellus',serif; font-size:13px; font-weight:400; color:var(--texto); line-height:1.3; flex:1; }
 .beb-price {
   font-family:'Cinzel',serif; font-size:13px;
   color:var(--dourado-claro); white-space:nowrap; flex-shrink:0;
@@ -532,6 +559,7 @@ footer {
 </head>
 <body>
 
+<div style="height:3px;background:linear-gradient(90deg,#8B0000,#C9920A,#f5c842,#C9920A,#8B0000);position:relative;z-index:2;"></div>
 <header>
 <!-- LOGO + INFO -->
   <div class="header-logo-area">
