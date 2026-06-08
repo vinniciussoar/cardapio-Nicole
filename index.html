@@ -110,14 +110,33 @@ header {
   margin-bottom: 6px;
   font-weight: 600;
 }
-.header-tagline {
+.header-insta {
+  display: inline-block;
+  margin-top: 6px;
   font-family: 'Marcellus', serif;
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.5px;
-  margin-top: 2px;
-  line-height: 1.6;
+  color: var(--dourado-claro);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: opacity .2s;
 }
+.header-insta:active { opacity: 0.6; }
+.header-google {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, rgba(212,160,23,0.15), rgba(212,160,23,0.06));
+  border: 1px solid rgba(212,160,23,0.35);
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dourado-claro);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all .2s;
+}
+.header-google:active { transform: scale(0.96); opacity: 0.8; }
 
 .gold-divider {
   height: 1px;
@@ -184,14 +203,33 @@ header {
   margin-bottom: 6px;
   font-weight: 600;
 }
-.header-tagline {
+.header-insta {
+  display: inline-block;
+  margin-top: 6px;
   font-family: 'Marcellus', serif;
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.5px;
-  margin-top: 2px;
-  line-height: 1.6;
+  color: var(--dourado-claro);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: opacity .2s;
 }
+.header-insta:active { opacity: 0.6; }
+.header-google {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, rgba(212,160,23,0.15), rgba(212,160,23,0.06));
+  border: 1px solid rgba(212,160,23,0.35);
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dourado-claro);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all .2s;
+}
+.header-google:active { transform: scale(0.96); opacity: 0.8; }
 
 .gold-divider {
   height: 1px;
@@ -505,6 +543,7 @@ main { max-width:520px; margin:0 auto; padding:0 16px; position:relative; z-inde
 .btn-bebidas:hover { transform:translateX(-50%) scale(1.05); border-color:var(--dourado-claro); }
 .btn-bebidas.visible { display:block; }
 
+
 footer {
   max-width: 520px;
   margin: 36px auto 0;
@@ -568,7 +607,8 @@ footer {
     </div>
     <div class="header-text-side">
       <p class="header-anos">✦ Pizzaria & Esfiharia Nicole Caculé</p>
-      <p class="header-tagline">Av. Manuel Caculé, 203<br>Caculé · BA</p>
+      <a class="header-insta" href="https://www.instagram.com/pizzaria.nicolecacule?igsh=MmhrcHJ5M3FoOWdr" target="_blank">📸 @pizzaria.nicolecacule</a>
+      <a class="header-google" href="https://g.page/r/CZl7czEfEHepEAE/review" target="_blank">⭐ Avalie no Google</a>
     </div>
 
   </div>
@@ -800,7 +840,7 @@ const BEBIDAS = [
   {sub:"🍺 Cervejas Long Neck", sabores:"🌾 Sem glúten: Amstel Ultra e Praya", items:[
     {name:"Heineken",price:"10,00"},
     {name:"Heineken Zero",price:"10,00"},
-    {name:"Stella Artois",price:"9,00"},
+    {name:"Stella Artois",price:"8,00"},
     {name:"Budweiser",price:"9,00"},
     {name:"Amstel",price:"9,00"},
     {name:"Amstel Ultra s/ Glúten lata",price:"5,00"},
